@@ -1,142 +1,115 @@
 package app.foodtracker.de.foodtracker;
 
-import android.Manifest;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-
-
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.os.Environment;
-import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import android.Manifest;
 
-
-
-public class MainActivity extends AppCompatActivity {
-
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
-    private NavigationView mNavView;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ioController = new IOController();
-        //init all UI elements
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawLayout);
-        mNavView = (NavigationView) findViewById(R.id.navView);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mNavView.setNavigationItemSelectedListener(this);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.openDrawer,R.string.closeDrawer);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Das hier ist > Toast", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        //set default fragment
-        setTitle("blaa");
-        Tablefragment tableFragment = new Tablefragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.linear, tableFragment,"table");
-        fragmentTransaction.commit();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
+    // set up navigation drawer
     @Override
-    //dispalys the drawer
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    //handle the navigation
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Log.d("Test",String.valueOf(item.getItemId()));
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
-            case R.id.table:
-                setTitle("Bundesliga Tabelle");
-//                Tablefragment tablefragment = new Tablefragment();
-//                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.linear,tablefragment,"table").addToBackStack("table");
-//                fragmentTransaction.commit();
-                break;
-            case R.id.results:
-                setTitle("Bundesliga Ergebnisse");
-//                ResultsFragment resultsFragment = new ResultsFragment();
-//                FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction2.replace(R.id.linear,resultsFragment,"result").addToBackStack("result");
-//                fragmentTransaction2.commit();
-                break;
-            case R.id.settings:
-                setTitle("Einstellungen");
-//                SettingsFragment settingsFragment = new SettingsFragment();
-//                FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction3.replace(R.id.linear,settingsFragment,"setting").addToBackStack("setting");
-//                fragmentTransaction3.commit();
-                break;
-            case R.id.info:
-                setTitle("Hilfe");
-//                InfoFragment infoFragment = new InfoFragment();
-//                FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction4.replace(R.id.linear,infoFragment,"info").addToBackStack("info");
-//                fragmentTransaction4.commit();
-                break;
-            default:
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
 
         }
-        mDrawerLayout.closeDrawer(GravityCompat.START);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-    @Override
-    //pop one fragment from the stack
-    public void onBackPressed() {
-        int count = getFragmentManager().getBackStackEntryCount();
-
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
-        } else {
-            getFragmentManager().popBackStack();
-        }
-    }
+    } // navigation drawer end
 
 
 
-    ////////////////////////////////////////////////////////////////////////
 
-
+    // set up permissions
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public boolean checkLocationPermission() {
@@ -190,11 +163,10 @@ public class MainActivity extends AppCompatActivity {
                     //TODO
                     // permission denied, boo! Disable the
 
-
                 }
                 return;
             }
 
         }
-    }
+    } // permissions end
 }

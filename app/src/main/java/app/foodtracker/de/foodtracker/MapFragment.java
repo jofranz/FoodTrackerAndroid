@@ -85,6 +85,4 @@ public class MapFragment extends Fragment {
 
         return rootView;
     }
-
-
 }
