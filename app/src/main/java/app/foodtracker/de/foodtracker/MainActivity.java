@@ -1,11 +1,13 @@
 package app.foodtracker.de.foodtracker;
 
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -19,7 +21,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.Manifest;
 
+
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private MapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +104,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
+            FragmentManager manager = getFragmentManager();
+            if ( !manager.popBackStackImmediate(MapFragment.class.getName(), 0) ) {
+
+                android.app.FragmentTransaction trans = manager.beginTransaction();
+                trans.addToBackStack(MapFragment.class.getName());
+                if ( mapFragment == null ) {
+                    mapFragment = new MapFragment();
+                }
+                trans.replace(R.id.main_content_activity, mapFragment);
+                trans.commit();
+            }
 
         }
 
