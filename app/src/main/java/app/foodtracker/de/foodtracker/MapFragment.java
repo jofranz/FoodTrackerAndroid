@@ -1,6 +1,7 @@
 package app.foodtracker.de.foodtracker;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -46,6 +47,8 @@ public class MapFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(((MainActivity)getActivity()).checkLocationPermission()) {
+                    locationManager = (LocationManager)((MainActivity)getActivity()).getSystemService(Context.LOCATION_SERVICE);
+
                     provider = locationManager.getBestProvider(new Criteria(), false);
 
                     Location location = locationManager.getLastKnownLocation(provider);
