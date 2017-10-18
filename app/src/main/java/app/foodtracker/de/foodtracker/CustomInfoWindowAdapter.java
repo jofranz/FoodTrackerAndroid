@@ -1,7 +1,8 @@
-package View;
+package app.foodtracker.de.foodtracker;
 
 import android.app.Activity;
 import android.view.View;
+
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;

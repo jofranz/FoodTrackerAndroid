@@ -41,7 +41,6 @@ public class MapFragment extends Fragment {
 
         mMapView.onResume(); // needed to get the map to display immediately
         mapAdd = (Button) rootView.findViewById(R.id.addButton);
-        mapAdd.setEnabled(false);
         mapAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +66,7 @@ public class MapFragment extends Fragment {
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
+                mapAdd.setEnabled(true);
                 googleMap = mMap;
 
                 // For showing a move to my location button
