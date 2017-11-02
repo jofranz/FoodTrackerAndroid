@@ -26,6 +26,7 @@ import android.Manifest;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private MapFragment mapFragment;
+    private EntryFragment entryFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +94,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            // for entry fragment
+            FragmentManager manager = getFragmentManager();
+            if ( !manager.popBackStackImmediate(EntryFragment.class.getName(), 0) ) {
+
+                android.app.FragmentTransaction trans = manager.beginTransaction();
+                trans.addToBackStack(EntryFragment.class.getName());
+                if ( entryFragment == null ) {
+                    entryFragment = new EntryFragment();
+                }
+                trans.replace(R.id.main_content_activity, entryFragment);
+                trans.commit();
+            }
 
         } else if (id == R.id.nav_send) {
-
+            // for map fragment
             FragmentManager manager = getFragmentManager();
             if ( !manager.popBackStackImmediate(MapFragment.class.getName(), 0) ) {
 
