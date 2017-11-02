@@ -5,7 +5,9 @@ import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -31,7 +33,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
+import java.io.IOException;
 import java.security.Provider;
+import java.util.List;
 
 import app.foodtracker.de.foodtracker.Model.MarkerRepresentation;
 
@@ -68,8 +72,6 @@ public class MapFragment extends Fragment implements LocationListener{
 
 
 
-
-
         mapAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,15 +81,30 @@ public class MapFragment extends Fragment implements LocationListener{
 
 
 
-
+                    //create a payload for the marker
                     MarkerRepresentation markerRepresentation = new MarkerRepresentation();
 
                     currentLocation = new LatLng(lat, lng);
 
                     googleMap.addMarker(new MarkerOptions().position(currentLocation).title("You are her")
                             .snippet("This is a snippet:" + currentLocation.toString())).setTag(markerRepresentation);
+
+                    //set own CustomInfoWindow
                     googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getActivity()));
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+
+
+                    //experimental feature for decoding coordinate to adress
+                    Geocoder geoCoder = new Geocoder(getActivity().getBaseContext());
+                    List<Address> matches = null;
+                    try {
+                        matches = geoCoder.getFromLocation(lat, lng, 1);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
+                    Log.d("debug", bestMatch.toString());
                 }
             }
         });
@@ -135,6 +152,7 @@ public class MapFragment extends Fragment implements LocationListener{
 
             Location location = locationManager.getLastKnownLocation(provider);
 
+            //set current location
             if (location == null) {
                 locationManager.requestLocationUpdates(provider, 0, 0, this);
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
@@ -151,6 +169,7 @@ public class MapFragment extends Fragment implements LocationListener{
         if(((MainActivity)getActivity()).checkLocationPermission()){
              lat = location.getLatitude();
              lng = location.getLongitude();
+
         }
 
     }
@@ -173,6 +192,7 @@ public class MapFragment extends Fragment implements LocationListener{
     @Override
     public void onStop() {
         super.onStop();
+        //disable postion update when the Fragment get changed
         locationManager.removeUpdates(this);
     }
 
