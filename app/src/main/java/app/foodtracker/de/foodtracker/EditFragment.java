@@ -19,11 +19,10 @@ import static android.app.Activity.RESULT_OK;
 
 public class EditFragment extends Fragment {
 
-    private Button entryButton;
     private ImageView imageView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private final void dispatchTakePictureIntent() {
+    private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -44,7 +43,7 @@ public class EditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.edit_fragment, container, false);
 
-        entryButton = rootView.findViewById(R.id.takePhoto);
+        Button entryButton = rootView.findViewById(R.id.takePhoto);
         imageView = rootView.findViewById(R.id.picturePreview);
 
 

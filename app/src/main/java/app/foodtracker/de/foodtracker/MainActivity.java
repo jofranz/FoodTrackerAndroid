@@ -25,6 +25,7 @@ import app.foodtracker.de.foodtracker.Model.Meal;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private MapFragment mapFragment;
+    private MainTableFragment mainTableFragment;
     private EditFragment editFragment;
     private Meal meals[];
     private Marker markers[];
@@ -98,9 +99,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_main_table) {
+            // for main table fragment
+            FragmentManager manager = getFragmentManager();
+            if ( !manager.popBackStackImmediate(MainTableFragment.class.getName(), 0) ) {
 
-        } else if (id == R.id.nav_share) { // #todo change old menu item
+                android.app.FragmentTransaction trans = manager.beginTransaction();
+                trans.addToBackStack(MainTableFragment.class.getName());
+                if (mainTableFragment == null) {
+                    mainTableFragment = new MainTableFragment();
+                }
+                trans.replace(R.id.main_content_activity, mainTableFragment);
+                trans.commit();
+            }
+
+
+        } else if (id == R.id.nav_edit) { // #todo change old menu item name
             // for entry fragment
             FragmentManager manager = getFragmentManager();
             if ( !manager.popBackStackImmediate(EditFragment.class.getName(), 0) ) {
@@ -114,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 trans.commit();
             }
 
-        } else if (id == R.id.nav_send) {
-            // for map fragment
+        } else if (id == R.id.nav_map) { // for map fragment
             FragmentManager manager = getFragmentManager();
             if ( !manager.popBackStackImmediate(MapFragment.class.getName(), 0) ) {
 
