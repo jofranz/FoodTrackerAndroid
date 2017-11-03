@@ -1,7 +1,6 @@
 package app.foodtracker.de.foodtracker;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -19,7 +17,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by jfranz on 02.11.2017.
  */
 
-public class EntryFragment extends Fragment {
+public class EditFragment extends Fragment {
 
     private Button entryButton;
     private ImageView imageView;
@@ -44,7 +42,7 @@ public class EntryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.entry_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.edit_fragment, container, false);
 
         entryButton = rootView.findViewById(R.id.takePhoto);
         imageView = rootView.findViewById(R.id.picturePreview);

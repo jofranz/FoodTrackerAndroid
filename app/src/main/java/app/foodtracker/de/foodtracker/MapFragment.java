@@ -94,7 +94,7 @@ public class MapFragment extends Fragment implements LocationListener{
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
 
 
-                    //experimental feature for decoding coordinate to adress
+                    //experimental feature for decoding coordinate to address
                     Geocoder geoCoder = new Geocoder(getActivity().getBaseContext());
                     List<Address> matches = null;
                     try {

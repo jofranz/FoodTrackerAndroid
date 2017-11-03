@@ -4,13 +4,9 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,12 +17,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.Manifest;
 
+import com.google.android.gms.maps.model.Marker;
+
+import app.foodtracker.de.foodtracker.Model.Meal;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private MapFragment mapFragment;
-    private EntryFragment entryFragment;
+    private EditFragment editFragment;
+    private Meal meals[];
+    private Marker markers[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,14 +97,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
             // for entry fragment
             FragmentManager manager = getFragmentManager();
-            if ( !manager.popBackStackImmediate(EntryFragment.class.getName(), 0) ) {
+            if ( !manager.popBackStackImmediate(EditFragment.class.getName(), 0) ) {
 
                 android.app.FragmentTransaction trans = manager.beginTransaction();
-                trans.addToBackStack(EntryFragment.class.getName());
-                if ( entryFragment == null ) {
-                    entryFragment = new EntryFragment();
+                trans.addToBackStack(EditFragment.class.getName());
+                if ( editFragment == null ) {
+                    editFragment = new EditFragment();
                 }
-                trans.replace(R.id.main_content_activity, entryFragment);
+                trans.replace(R.id.main_content_activity, editFragment);
                 trans.commit();
             }
 
