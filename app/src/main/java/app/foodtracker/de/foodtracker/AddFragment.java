@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -22,6 +24,7 @@ public class AddFragment extends Fragment {
 
     private ImageView imageView;
     private EditText foodName, addressEdit, snippet;
+    private FloatingActionButton camera;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -52,18 +55,15 @@ public class AddFragment extends Fragment {
         addressEdit = rootView.findViewById(R.id.addressEdit);
         foodName = rootView.findViewById(R.id.foodName);
         snippet = rootView.findViewById(R.id.snippet);
+        camera = rootView.findViewById(R.id.camera);
 
 
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
+        camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
-
             }
         });
-
         return rootView;
     }
 
