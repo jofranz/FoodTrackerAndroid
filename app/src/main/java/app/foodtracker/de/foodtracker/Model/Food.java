@@ -19,6 +19,7 @@ public class Food {
         this.description = description;
     }
 
+    //default value
     public Food() {
         this.foodName = "Burger";
         this.snippet = "verry delicious food";

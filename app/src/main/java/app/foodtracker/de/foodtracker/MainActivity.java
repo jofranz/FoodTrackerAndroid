@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private MapFragment mapFragment;
     private MainTableFragment mainTableFragment;
-    private EditFragment editFragment;
+    private AddFragment addFragment;
     private Meal meals[];
     private Marker markers[];
 
@@ -117,14 +117,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_edit) { // #todo change old menu item name
             // for entry fragment
             FragmentManager manager = getFragmentManager();
-            if ( !manager.popBackStackImmediate(EditFragment.class.getName(), 0) ) {
+            if ( !manager.popBackStackImmediate(AddFragment.class.getName(), 0) ) {
 
                 android.app.FragmentTransaction trans = manager.beginTransaction();
-                trans.addToBackStack(EditFragment.class.getName());
-                if ( editFragment == null ) {
-                    editFragment = new EditFragment();
+                trans.addToBackStack(AddFragment.class.getName());
+                if ( addFragment == null ) {
+                    addFragment = new AddFragment();
                 }
-                trans.replace(R.id.main_content_activity, editFragment);
+                trans.replace(R.id.main_content_activity, addFragment);
                 trans.commit();
             }
 
