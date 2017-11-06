@@ -83,64 +83,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
-
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        FragmentManager manager = getFragmentManager();
 
-        } else if (id == R.id.nav_slideshow) {
+        switch (id) { // switch case for left menu
 
-        } else if (id == R.id.nav_main_table) {
-            // for main table fragment
-            FragmentManager manager = getFragmentManager();
-            if ( !manager.popBackStackImmediate(MainTableFragment.class.getName(), 0) ) {
-
-                android.app.FragmentTransaction trans = manager.beginTransaction();
-                trans.addToBackStack(MainTableFragment.class.getName());
-                if (mainTableFragment == null) {
-                    mainTableFragment = new MainTableFragment();
+            case R.id.nav_main_table: // for main table fragment
+                if ( !manager.popBackStackImmediate(MainTableFragment.class.getName(), 0) ) {
+                    android.app.FragmentTransaction trans = manager.beginTransaction();
+                    trans.addToBackStack(MainTableFragment.class.getName());
+                    if (mainTableFragment == null) {
+                        mainTableFragment = new MainTableFragment();
+                    }
+                    trans.replace(R.id.main_content_activity, mainTableFragment);
+                    trans.commit();
                 }
-                trans.replace(R.id.main_content_activity, mainTableFragment);
-                trans.commit();
-            }
+            break;
 
-
-        } else if (id == R.id.nav_edit) { // #todo change old menu item name
-            // for entry fragment
-            FragmentManager manager = getFragmentManager();
-            if ( !manager.popBackStackImmediate(AddFragment.class.getName(), 0) ) {
-
-                android.app.FragmentTransaction trans = manager.beginTransaction();
-                trans.addToBackStack(AddFragment.class.getName());
-                if ( addFragment == null ) {
-                    addFragment = new AddFragment();
+            case R.id.nav_edit: // for entry fragment
+                if ( !manager.popBackStackImmediate(AddFragment.class.getName(), 0) ) {
+                    android.app.FragmentTransaction trans = manager.beginTransaction();
+                    trans.addToBackStack(AddFragment.class.getName());
+                    if ( addFragment == null ) {
+                        addFragment = new AddFragment();
+                    }
+                    trans.replace(R.id.main_content_activity, addFragment);
+                    trans.commit();
                 }
-                trans.replace(R.id.main_content_activity, addFragment);
-                trans.commit();
-            }
+            break;
 
-        } else if (id == R.id.nav_map) { // for map fragment
-            FragmentManager manager = getFragmentManager();
-            if ( !manager.popBackStackImmediate(MapFragment.class.getName(), 0) ) {
-
-                android.app.FragmentTransaction trans = manager.beginTransaction();
-                trans.addToBackStack(MapFragment.class.getName());
-                if ( mapFragment == null ) {
-                    mapFragment = new MapFragment();
+            case R.id.nav_map: // for map fragment
+                if ( !manager.popBackStackImmediate(MapFragment.class.getName(), 0) ) {
+                    android.app.FragmentTransaction trans = manager.beginTransaction();
+                    trans.addToBackStack(MapFragment.class.getName());
+                    if ( mapFragment == null ) {
+                        mapFragment = new MapFragment();
+                    }
+                    trans.replace(R.id.main_content_activity, mapFragment);
+                    trans.commit();
                 }
-                trans.replace(R.id.main_content_activity, mapFragment);
-                trans.commit();
-            }
-
+            break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
