@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker;
+package oldandBusted;
 
 
 import android.app.Fragment;
@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.util.List;
 
 import app.foodtracker.de.foodtracker.Model.MarkerRepresentation;
+import app.foodtracker.de.foodtracker.R;
+import app.foodtracker.de.foodtracker.SecondMainActivity;
 
 /**
  * Created by normen on 16.10.17.

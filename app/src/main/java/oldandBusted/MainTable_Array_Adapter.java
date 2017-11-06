@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker;
+package oldandBusted;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import app.foodtracker.de.foodtracker.R;
 
 /**
  * Created by Johannes Franz on 05.11.2017.

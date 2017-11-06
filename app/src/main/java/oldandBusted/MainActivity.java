@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker;
+package oldandBusted;
 
 import android.app.FragmentManager;
 import android.content.DialogInterface;
@@ -20,6 +20,7 @@ import android.Manifest;
 import com.google.android.gms.maps.model.Marker;
 
 import app.foodtracker.de.foodtracker.Model.Meal;
+import app.foodtracker.de.foodtracker.R;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(SecondMainActivity.this,
+                                ActivityCompat.requestPermissions(MainActivity.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
                             }

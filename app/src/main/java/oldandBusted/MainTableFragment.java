@@ -1,26 +1,18 @@
-package app.foodtracker.de.foodtracker;
+package oldandBusted;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import static android.app.Activity.RESULT_OK;
+import app.foodtracker.de.foodtracker.R;
 
 /**
  * Created by Johannes Franz on 02.11.2017.

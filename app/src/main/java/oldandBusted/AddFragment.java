@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker;
+package oldandBusted;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import app.foodtracker.de.foodtracker.R;
 
 import static android.app.Activity.RESULT_OK;
 
