@@ -18,7 +18,7 @@ public class MainTable_Array_Adapter extends ArrayAdapter {
 
 
     //default constructor
-    public MainTable_Array_Adapter(Context aContext, ArrayList<String> stringTestArrayList) { // only for testing
+    public MainTable_Array_Adapter(Context aContext, ArrayList<String> stringTestArrayList) { // #todo change to model array
         super(aContext, R.layout.main_table_custom_row, stringTestArrayList);
     }
 
@@ -31,6 +31,12 @@ public class MainTable_Array_Adapter extends ArrayAdapter {
         // link layout elements to objects and provide content
         TextView mFoodText = mThisView.findViewById(R.id.foodText);
         mFoodText.setText("hardcoded string");
+
+
+
+
+        TextView mEffectNr = mThisView.findViewById(R.id.effect);
+        mEffectNr.setText("" + aPosition);
 
 
         // give a color to every second row
