@@ -4,16 +4,13 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Gallery;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
-import app.foodtracker.de.foodtracker.Model.MarkerRepresentation;
 import app.foodtracker.de.foodtracker.R;
 
 /**

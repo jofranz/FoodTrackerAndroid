@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker.Model;
+package oldandBusted;
 
 import android.media.Image;
 

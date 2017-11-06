@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker.Model;
+package oldandBusted;
 
 import android.media.Image;
 
@@ -10,27 +10,27 @@ import java.util.GregorianCalendar;
 
 public class Meal {
 
-    private Food food;
+    private oldandBusted.Food food;
     private GregorianCalendar time;
     private Image foodImage;
 
     public Meal() {
-        this.food = new Food();
+        this.food = new oldandBusted.Food();
         this.time = new GregorianCalendar();
         this.foodImage = null;
     }
 
-    public Meal(Food food, Image foodImage) {
+    public Meal(oldandBusted.Food food, Image foodImage) {
         this.food = food;
         this.foodImage = foodImage;
         this.time = new GregorianCalendar();
     }
 
-    public Food getFood() {
+    public oldandBusted.Food getFood() {
         return food;
     }
 
-    public void setFood(Food food) {
+    public void setFood(oldandBusted.Food food) {
         this.food = food;
     }
 

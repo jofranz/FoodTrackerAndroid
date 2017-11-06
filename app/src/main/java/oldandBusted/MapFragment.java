@@ -32,7 +32,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-import app.foodtracker.de.foodtracker.Model.MarkerRepresentation;
 import app.foodtracker.de.foodtracker.R;
 import app.foodtracker.de.foodtracker.SecondMainActivity;
 

@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker.Model;
+package oldandBusted;
 
 /**
  * Created by normen on 03.11.17.

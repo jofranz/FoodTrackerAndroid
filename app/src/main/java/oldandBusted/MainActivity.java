@@ -19,7 +19,6 @@ import android.Manifest;
 
 import com.google.android.gms.maps.model.Marker;
 
-import app.foodtracker.de.foodtracker.Model.Meal;
 import app.foodtracker.de.foodtracker.R;
 
 
