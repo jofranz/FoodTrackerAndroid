@@ -1,10 +1,8 @@
 package app.foodtracker.de.foodtracker;
 
 
-import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -12,7 +10,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +23,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -34,7 +30,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import java.io.IOException;
-import java.security.Provider;
 import java.util.List;
 
 import app.foodtracker.de.foodtracker.Model.MarkerRepresentation;
@@ -66,7 +61,7 @@ public class MapFragment extends Fragment implements LocationListener{
         mMapView.onResume(); // needed to get the map to display immediately
         mapAdd = (Button) rootView.findViewById(R.id.addButton);
         Criteria crit = new Criteria();
-        locationManager = (LocationManager)((MainActivity)getActivity()).getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager)((SecondMainActivity)getActivity()).getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(crit,true);
 
 
@@ -75,7 +70,7 @@ public class MapFragment extends Fragment implements LocationListener{
         mapAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((MainActivity)getActivity()).checkLocationPermission()) {
+                if(((SecondMainActivity)getActivity()).checkLocationPermission()) {
 
 
 
@@ -122,7 +117,7 @@ public class MapFragment extends Fragment implements LocationListener{
                 googleMap = mMap;
 
                 // For showing a move to my location button
-                if(((MainActivity)getActivity()).checkLocationPermission()){
+                if(((SecondMainActivity)getActivity()).checkLocationPermission()){
                     googleMap.setMyLocationEnabled(true);
                 }
 
@@ -148,7 +143,7 @@ public class MapFragment extends Fragment implements LocationListener{
     @Override
     public void onResume() {
         super.onResume();
-        if(((MainActivity)getActivity()).checkLocationPermission()) {
+        if(((SecondMainActivity)getActivity()).checkLocationPermission()) {
 
             Location location = locationManager.getLastKnownLocation(provider);
 
@@ -166,7 +161,7 @@ public class MapFragment extends Fragment implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
         Log.d("onLocationChanged","bonobo");
-        if(((MainActivity)getActivity()).checkLocationPermission()){
+        if(((SecondMainActivity)getActivity()).checkLocationPermission()){
              lat = location.getLatitude();
              lng = location.getLongitude();
 
