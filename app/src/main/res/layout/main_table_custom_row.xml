@@ -28,7 +28,7 @@
         android:layout_width="1px"
         android:layout_height="45dp"
         android:gravity="center"
-        android:text="11"
+        android:text="42"
         android:layout_weight="1"/>
 
 </LinearLayout>
