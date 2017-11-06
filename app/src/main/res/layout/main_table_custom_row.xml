@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/thumbnail"
+        android:id="@+id/thumbnail2"
         android:layout_width="1px"
         android:layout_height="45dp"
         android:src="@mipmap/ic_launcher"
