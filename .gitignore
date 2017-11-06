@@ -122,6 +122,10 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+
+# added manually
+build_file_checksums.ser
+
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
