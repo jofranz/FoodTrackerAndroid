@@ -30,7 +30,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     private val meals: Array<Meal>? = null
     private val markers: Array<Marker>? = null
     private val manager = fragmentManager
-
+    private lateinit var drawer: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
@@ -84,7 +84,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // Handle navigation view item clicks here.
         val id = item.itemId
         when (id) {
-        // switch case for left menu
+        // when(id) for left menu
 
             R.id.nav_main_table // for main table fragment
             -> if (!manager.popBackStackImmediate(TableFragment::class.java.name, 0)) {
@@ -179,6 +179,28 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
         }
     } // permissions end
+
+    // identifer: AddFragemnt -> 0,   add more
+    fun changeFragment(identifer: Int){
+
+        when (identifer){
+            0
+            -> if (!manager.popBackStackImmediate(AddFragment::class.java.name, 0)) {
+                val trans = manager.beginTransaction()
+                trans.addToBackStack(AddFragment::class.java.name)
+                if (addFragment == null) {
+                    addFragment = AddFragment()
+                }
+                trans.replace(R.id.main_content_activity, addFragment)
+                trans.commit()
+                getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+
+            }
+
+        }
+
+    }
+
     inner class Item(val id: Long, val title: String)
 }
 
