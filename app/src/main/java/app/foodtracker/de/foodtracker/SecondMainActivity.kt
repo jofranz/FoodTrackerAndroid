@@ -18,14 +18,15 @@ import android.view.View
 import app.foodtracker.de.foodtracker.Model.Meal
 import com.google.android.gms.maps.model.Marker
 import oldandBusted.MainTableFragment
+import kotlinx.android.synthetic.main.*
 
 class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var adapter: RecyclerAdapter
 
     private var mapFragment: MapFragment? = null
     private var mainTableFragment: MainTableFragment? = null
     private var addFragment: AddFragment? = null
+    private var tableFragment: TableFragment? = null
     private val meals: Array<Meal>? = null
     private val markers: Array<Marker>? = null
     private val manager = fragmentManager
@@ -46,30 +47,6 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
 
-        // only for testing prupose
-//        val hof : RecyclerAdapter.City = RecyclerAdapter.City(cityName = "Hof", size = 50000)
-//        val berlin : RecyclerAdapter.City = RecyclerAdapter.City(cityName = "Berlin", size = 3000000)
-//        val bonn : RecyclerAdapter.City = RecyclerAdapter.City(cityName = "Bonn", size = 700000)
-//
-//
-//
-//
-//        val cities  = arrayListOf<RecyclerAdapter.City>()
-//        cities.add(berlin)
-//        cities.add(hof)
-//        cities.add(bonn)
-//
-//
-//        setContentView(R.layout.activity_main)
-//        recycler.layoutManager = LinearLayoutManager(this,1,false)
-//        recycler.adapter = RecyclerAdapter(cities)
-        val trans = manager.beginTransaction()
-        trans.addToBackStack(MainTableFragment::class.java.name)
-        if (mainTableFragment == null) {
-            mainTableFragment = MainTableFragment()
-        }
-        trans.replace(R.id.main_content_activity, mainTableFragment)
-        trans.commit()
     }
 
 
@@ -110,13 +87,13 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // switch case for left menu
 
             R.id.nav_main_table // for main table fragment
-            -> if (!manager.popBackStackImmediate(MainTableFragment::class.java.name, 0)) {
+            -> if (!manager.popBackStackImmediate(TableFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()
                 trans.addToBackStack(MainTableFragment::class.java.name)
-                if (mainTableFragment == null) {
-                    mainTableFragment = MainTableFragment()
+                if (tableFragment == null) {
+                    tableFragment = TableFragment()
                 }
-                trans.replace(R.id.main_content_activity, mainTableFragment)
+                trans.replace(R.id.main_content_activity, tableFragment)
                 trans.commit()
             }
 

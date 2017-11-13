@@ -52,7 +52,7 @@ class CustomInfoWindowAdapter internal constructor(activity: Activity) : GoogleM
         val markerRe = marker.tag as MarkerRepresentation?
 
         infoMeal.text = markerRe!!.meal
-        infoTime.text = markerRe.time.time.toString()
+        infoTime.text = markerRe.time?.time.toString()
 
 
 

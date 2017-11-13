@@ -5,19 +5,18 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.main_table_custom_row.view.*
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 import java.util.*
 
 /**
  * Created by normen on 06.11.17.
  */
-class RecyclerAdapter(private val cities: ArrayList<MealTableRepresentation>) : RecyclerView.Adapter<RecyclerAdapter.ItemsHolder>() {
+class RecyclerAdapter(private val mealList: ArrayList<MealTableRepresentation>) : RecyclerView.Adapter<RecyclerAdapter.ItemsHolder>() {
     override fun onBindViewHolder(holder: RecyclerAdapter.ItemsHolder, position: Int) {
-        holder.bind(cities[position])
+        holder.bind(mealList[position])
     }
 
-    override fun getItemCount(): Int = cities.size;
+    override fun getItemCount(): Int = mealList.size;
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerAdapter.ItemsHolder {
         val inflatedView = parent!!.inflate(R.layout.recyclerview_item_row, false)
@@ -29,9 +28,11 @@ class RecyclerAdapter(private val cities: ArrayList<MealTableRepresentation>) : 
         private var view = v
 
         fun bind(meal: MealTableRepresentation) = with(view) {
-            thumbnail.setImageBitmap(meal.thumbnail as Bitmap)
+            if(thumbnail != null) {
+                //thumbnail.setImageBitmap(meal.thumbnail as Bitmap)
+            }
             foodName.text = meal.foodName
-            date.text = meal.date.toString()
+            date.text = meal.date.time.toString()
         }
         init {
             v.setOnClickListener(this)
@@ -45,5 +46,5 @@ class RecyclerAdapter(private val cities: ArrayList<MealTableRepresentation>) : 
         }
     }
 
-     data class MealTableRepresentation(val thumbnail: Image, val foodName: String, val date: GregorianCalendar, var effect: Int? )
+     data class MealTableRepresentation(val thumbnail: Image?, val foodName: String, val date: GregorianCalendar, var effect: Int? )
 }

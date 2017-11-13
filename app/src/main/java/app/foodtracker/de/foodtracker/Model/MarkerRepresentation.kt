@@ -7,11 +7,8 @@ import java.util.*
  * Created by Johannes Franz on 06.11.2017.
  */
 
-class MarkerRepresentation(var mealImage: Image?, var time: GregorianCalendar?, var meal: String?) {
+class MarkerRepresentation(val mealImage: Image? = null, var time: GregorianCalendar = GregorianCalendar(), var meal: String = "Fish") {
 
-    init {
-        mealImage = null
-        time = GregorianCalendar()
-        meal = "Burger2"
-    }
+
+
 }
