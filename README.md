@@ -6,7 +6,7 @@
  
  It is meant to help people to find out if the food they consome has negative impacts to their body.
 
-## Project
+# Project
  Our plan was it to realease this project under an open source licence.
  Project duration 10/2017 - 02/2018 (as a closed project)
  03/2018 public as described above.
@@ -16,6 +16,10 @@
 - Min SDK Version 23 and target SDK Version 26 (to work with new-ish software SDK and frameworks)
 
         
+# Contributors
+ @jofranz (myself)
+ @tanscon (teammate)
+		
 # Further work
 
 - cloud functionality
