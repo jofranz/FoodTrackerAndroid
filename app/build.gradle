@@ -25,6 +25,8 @@ android {
     }
 
     dependencies {
+        compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
+        kapt "android.arch.persistence.room:compiler:1.0.0-alpha1"
         apply plugin: 'kotlin-android-extensions'
         compile 'de.hdodenhof:circleimageview:2.2.0'
         implementation 'com.android.support:appcompat-v7:26.1.0'

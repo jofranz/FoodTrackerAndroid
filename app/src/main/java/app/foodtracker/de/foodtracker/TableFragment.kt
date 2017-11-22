@@ -37,7 +37,6 @@ class TableFragment : Fragment() {
         mealList.add(fish)
         mealList.add(soda)
 
-        //I will fix this later
         adapter = RecyclerAdapter(mealList)
         recycleView.layoutManager = mLayoutManager
         recycleView.adapter = adapter
