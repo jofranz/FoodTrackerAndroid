@@ -24,17 +24,17 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
         @Query("select * from meal")
         fun getAllMeal(): List<Meal>
 
-        @Query("select * from meal where name = :p0")
+        @Query("select * from meal where foodname = :foodname")
         fun findMealByName(foodname: String): Meal
 
-        @Query("select * from meal where id = :p0")
-        fun findMealById(id: Int)
+        @Query("select * from meal where id = :id")
+        fun findMealById(id: Int) : Meal
 
-        @Query("select * from meal where time >= :p0")
+        @Query("select * from meal where time >= :time")
         fun findAllMealsAfter(time: Long) : List<Meal>
 
-        @Query("select * from meal where addressLine == :p0")
-        fun findAllMealsWithAddress(addressline: String)
+        @Query("select * from meal where addressLine == :addressline")
+        fun findAllMealsWithAddress(addressline: String) : List<Meal>
 
         @Insert(onConflict = 1)
         fun insetMeal(meal: Meal)
