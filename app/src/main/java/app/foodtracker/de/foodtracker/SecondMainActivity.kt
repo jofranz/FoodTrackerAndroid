@@ -16,9 +16,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import app.foodtracker.de.foodtracker.Model.Meal
+import app.foodtracker.de.foodtracker.UI.AddFragment
+import app.foodtracker.de.foodtracker.UI.MapFragment
+import app.foodtracker.de.foodtracker.UI.TableFragment
 import com.google.android.gms.maps.model.Marker
 import oldandBusted.MainTableFragment
-import kotlinx.android.synthetic.main.*
 
 class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
