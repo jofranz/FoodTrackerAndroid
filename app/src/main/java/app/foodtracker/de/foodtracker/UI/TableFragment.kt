@@ -5,21 +5,21 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.foodtracker.de.foodtracker.*
+import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Model.Meal
-import java.util.*
-import javax.inject.Inject
+
 
 /**
  * Created by normen on 12.11.17.
  */
-class TableFragment : Fragment(), MealPresentation {
+class TableFragment : Fragment() {
 
 
-    @Inject lateinit var presenter: MealPresenter
     private lateinit var adapter: RecyclerAdapter
     var recyclerView: RecyclerView? = null
 
@@ -34,24 +34,26 @@ class TableFragment : Fragment(), MealPresentation {
         adapter = RecyclerAdapter(emptyList())
         recyclerView?.layoutManager = mLayoutManager
         recyclerView?.adapter = adapter
-        val fab1 = view!!.findViewById<FloatingActionButton>(R.id.fab)
+        val fab1 = view.findViewById<FloatingActionButton>(R.id.fab)
         fab1.setOnClickListener(View.OnClickListener {
-            presenter.addNewTask("Burger")
+            var mdb = AppDatabase.getInMemoryDatabase(this.context)
+            val meal1 = Meal("Burger","short","long","effect",1,124356,12.1,45.7,"Schloßalle 3")
+            mdb.mealModel().insetMeal(meal1)
+            showsMeals(mdb.mealModel().getAllMeal())
             //(activity as SecondMainActivity).changeFragment(0)
         })
-        presenter.onCreate(this)
         return view
     }
 
-    override fun showsMels(meals: List<app.foodtracker.de.foodtracker.Model.Meal>) {
+    fun showsMeals(meals: List<app.foodtracker.de.foodtracker.Model.Meal>) {
         recyclerView?.adapter = RecyclerAdapter(meals)
     }
 
-    override fun taskAddedAt(position: Int) {
+    fun taskAddedAt(position: Int) {
         recyclerView?.adapter?.notifyItemInserted(position)
     }
 
-    override fun scrollTo(position: Int) {
+    fun scrollTo(position: Int) {
         recyclerView?.smoothScrollToPosition(position)
     }
 }

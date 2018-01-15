@@ -1,13 +1,11 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '27.0.1'
     kapt { generateStubs = true }
     defaultConfig {
         defaultConfig {
@@ -26,14 +24,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-
     }
 
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib:1.1.60"
         apply plugin: 'kotlin-kapt'
-        implementation 'com.google.dagger:dagger:2.0'
-        kapt 'com.google.dagger:dagger-compiler:2.0'
         provided 'org.glassfish:javax.annotation:10.0-b28'
         implementation "android.arch.persistence.room:runtime:1.0.0"
         kapt "android.arch.persistence.room:compiler:1.0.0"
@@ -41,7 +36,7 @@ android {
         implementation 'com.android.support:appcompat-v7:26.1.0'
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
         implementation 'com.android.support:recyclerview-v7:26.1.0'
-        implementation 'com.google.android.gms:play-services-maps:11.4.2'
+        implementation 'com.google.android.gms:play-services-maps:11.8.0'
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation 'com.android.support:appcompat-v7:26.1.0'
         implementation 'com.android.support.constraint:constraint-layout:1.0.2'

@@ -1,6 +1,7 @@
 package app.foodtracker.de.foodtracker
 
 import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -21,9 +22,14 @@ import app.foodtracker.de.foodtracker.UI.MapFragment
 import app.foodtracker.de.foodtracker.UI.TableFragment
 import com.google.android.gms.maps.model.Marker
 import oldandBusted.MainTableFragment
+import android.arch.persistence.room.Room
 
-class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+
+
+
+
+class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private var mapFragment: MapFragment? = null
     private var mainTableFragment: MainTableFragment? = null
@@ -45,6 +51,8 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
+
+
 
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
@@ -202,6 +210,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
 
     }
+
 
     inner class Item(val id: Long, val title: String)
 }
