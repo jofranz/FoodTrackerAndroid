@@ -3,6 +3,8 @@
 \BOOKMARK [0][-]{chapter.3}{Kotlin als Programmiersprache}{}% 3
 \BOOKMARK [0][-]{chapter.4}{Entwurfsphase}{}% 4
 \BOOKMARK [0][-]{chapter.5}{Umsetzung}{}% 5
-\BOOKMARK [0][-]{chapter.6}{Aufgetretene Probleme}{}% 6
-\BOOKMARK [0][-]{chapter.7}{Lessons learned}{}% 7
-\BOOKMARK [0][-]{chapter.8}{Weitere Arbeiten}{}% 8
+\BOOKMARK [1][-]{section.5.1}{Datenbank}{chapter.5}% 6
+\BOOKMARK [1][-]{section.5.2}{Dagger 2}{chapter.5}% 7
+\BOOKMARK [0][-]{chapter.6}{Aufgetretene Probleme}{}% 8
+\BOOKMARK [0][-]{chapter.7}{Lessons learned}{}% 9
+\BOOKMARK [0][-]{chapter.8}{Weitere Arbeiten}{}% 10

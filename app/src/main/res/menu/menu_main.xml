@@ -3,14 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="70"
+        android:title="settings">
+    </item>
     <item
-        android:id="@+id/action_settings2"
-        android:orderInCategory="100"
-        android:title="hardcoded title"
-        app:showAsAction="never" />
-
+        android:id="@+id/item_starred_list"
+        android:icon="@drawable/ic_add_a_photo_black_48dp"
+        app:showAsAction="ifRoom"
+        android:title="star-list"
+        android:titleCondensed="star-list-c">
+    </item>
+    <item
+        android:id="@+id/item_alarms"
+        android:icon="@drawable/ic_add_a_photo_black_48dp"
+        app:showAsAction="ifRoom"
+        android:title="alarms"
+        android:titleCondensed="alarms-c">
+    </item>
+    <item
+        android:id="@+id/item_changes"
+        android:icon="@drawable/ic_add_a_photo_black_48dp"
+        app:showAsAction="ifRoom"
+        android:title="changes"
+        android:titleCondensed="changes-c">
+    </item>
 </menu>

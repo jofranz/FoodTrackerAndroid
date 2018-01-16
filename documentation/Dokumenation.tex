@@ -100,7 +100,7 @@ Durch eigenen Bedarf motiviert entstand die Idee für diese App. Um aus wiederke
 
 
 \chapter{Kotlin als Programmiersprache}
-Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. 
+Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler Mobiler Anwendungen zusätzlich erleichtert.
 
 
 \newpage
@@ -156,6 +156,12 @@ Erster Screen Entwurf:
 
 
 
+\begin{figure}[ht]
+	\centering
+  \frame{ \includegraphics[width=1.0\textwidth]{main_burger} }
+	\caption{Karten Screen}
+	\label{fig1}
+\end{figure}
 
 
 
@@ -163,14 +169,27 @@ Erster Screen Entwurf:
 \newpage
 
 \chapter{Umsetzung}
+\section{Datenbank}
+Für die Speicherung der Daten wurde sich für eine SQLite Datenbank entschieden. Das hat mehrere Vorteile. Zum einen lässt sich der Inhalt dieser Datenbank sehr einfach exportieren, um auf einem anderen Gerät wieder eingespielt werden zu können, zum anderen bietet eine Datenbankstruktur viele Möglichkeiten zur Datenanalyse mit schnellem Zugriff ohne wie bisher mit Files arbeiten zu müssen.
+
+\section{Room}
+Room wurde als Datenbank Abstraktionsschicht verwendet.
+
+
 
 \newpage
 
 \chapter{Aufgetretene Probleme}
 
+
+\begin{enumerate}
+\item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste.
+\end{enumerate}
+
 \newpage
 
 \chapter{Lessons learned}
+Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut werden musste, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.
 
 
 
@@ -178,6 +197,10 @@ Erster Screen Entwurf:
 
 \chapter{Weitere Arbeiten}
 In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet.
+
+
+
+
 \newpage
 
 
