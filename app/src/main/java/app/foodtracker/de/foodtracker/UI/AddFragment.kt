@@ -16,10 +16,18 @@ import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.app.Activity
+import android.net.Uri
+import android.os.Environment
+import android.support.v4.content.FileProvider
 import android.widget.Button
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Model.Meal
 import app.foodtracker.de.foodtracker.R
+import java.io.File
+import java.io.StringReader
+import java.sql.Date
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -35,19 +43,30 @@ class AddFragment : Fragment() {
     private lateinit var camera: FloatingActionButton
     private lateinit var inputManager : InputMethodManager
     private lateinit var submit : Button
+    private lateinit var imageLink : String
+    private lateinit var absulutePath : Uri
 
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(activity.packageManager) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            var photoFile : File? = null
+            photoFile = createImageFile();
+            Log.d("PathToImage: ", photoFile.toString())
+            if (photoFile != null){
+                val uri = FileProvider.getUriForFile(activity.applicationContext,"com.foodtracker.android.fileprovider",photoFile)
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                absulutePath = uri
+                print(absulutePath)
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
         }
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val extras = data.extras
-            val imageBitmap = extras!!.get("data") as Bitmap
+            //val extras = data.extras
+            val imageBitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver,absulutePath)
             imageView!!.setImageBitmap(imageBitmap)
         }
     }
@@ -67,8 +86,9 @@ class AddFragment : Fragment() {
 
         submit.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
+                var currentTime = GregorianCalendar().timeInMillis
                 var meal = Meal(foodName.text.toString(),snippet.text.toString(),
-                        "long","ok",1,123,12.3,45.3245,addressEdit.text.toString())
+                        "long","ok",1,currentTime,12.3,45.3245,addressEdit.text.toString(),absulutePath.toString())
                 var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
                 mdb.mealModel().insetMeal(meal)
                 activity.fragmentManager.popBackStack()
@@ -87,6 +107,21 @@ class AddFragment : Fragment() {
 
         internal val REQUEST_IMAGE_CAPTURE = 1
     }
+
+    fun createImageFile() : File{
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val fileName = "JPEG_" + timeStamp + "_";
+        val storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(
+                fileName,
+                ".jpg",
+                storageDir
+        )
+        return image
+    }
+
+
+
 
     override fun onStop() {
         super.onStop()

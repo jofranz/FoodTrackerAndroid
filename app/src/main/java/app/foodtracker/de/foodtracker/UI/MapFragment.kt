@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import app.foodtracker.de.foodtracker.CustomInfoWindowAdapter
+import app.foodtracker.de.foodtracker.Presenter.CustomInfoWindowAdapter
 import app.foodtracker.de.foodtracker.Model.MarkerRepresentation
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity

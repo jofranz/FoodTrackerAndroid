@@ -1,18 +1,16 @@
 package app.foodtracker.de.foodtracker.UI
 
 import android.app.Fragment
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.foodtracker.de.foodtracker.*
 import app.foodtracker.de.foodtracker.Model.AppDatabase
-import app.foodtracker.de.foodtracker.Model.Meal
+import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 
 
 /**

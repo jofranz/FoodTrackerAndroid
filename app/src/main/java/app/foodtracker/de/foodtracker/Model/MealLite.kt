@@ -5,6 +5,7 @@ import java.nio.charset.CodingErrorAction.REPLACE
 import java.util.*
 import java.lang.annotation.Annotation
 import android.arch.persistence.room.OnConflictStrategy
+import java.sql.Date
 
 @Entity(tableName = "meal")
 data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
@@ -15,7 +16,8 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
                     @ColumnInfo(name = "time")var time: Long,
                     @ColumnInfo(name = "lat") var lat: Double,
                     @ColumnInfo(name = "lng") var lng: Double,
-                    @ColumnInfo(name = "addressline") var addressline: String){
+                    @ColumnInfo(name = "addressline") var addressline: String,
+                    @ColumnInfo(name="imagePath") var imagePath: String){
 
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true) var id: Long = 0

@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker
+package app.foodtracker.de.foodtracker.Presenter
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
