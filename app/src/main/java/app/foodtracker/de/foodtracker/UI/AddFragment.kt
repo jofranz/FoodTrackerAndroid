@@ -16,21 +16,25 @@ import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.app.Activity
+import android.widget.Button
+import app.foodtracker.de.foodtracker.Model.AppDatabase
+import app.foodtracker.de.foodtracker.Model.Meal
 import app.foodtracker.de.foodtracker.R
 
 
 /**
  * Created by jfranz on 02.11.2017.
  */
-
+//TODO get lat and lng
 class AddFragment : Fragment() {
 
-    private var imageView: ImageView? = null
-    private var foodName: EditText? = null
-    private var addressEdit: EditText? = null
-    private var snippet: EditText? = null
-    private var camera: FloatingActionButton? = null
+    private lateinit var imageView: ImageView
+    private lateinit var foodName: EditText
+    private lateinit var addressEdit: EditText
+    private lateinit var snippet: EditText
+    private lateinit var camera: FloatingActionButton
     private lateinit var inputManager : InputMethodManager
+    private lateinit var submit : Button
 
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -58,9 +62,18 @@ class AddFragment : Fragment() {
         foodName = rootView.findViewById(R.id.foodName)
         snippet = rootView.findViewById(R.id.snippet)
         camera = rootView.findViewById(R.id.camera)
-
-
+        submit = rootView.findViewById(R.id.submit)
         camera!!.setOnClickListener { dispatchTakePictureIntent() }
+
+        submit.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                var meal = Meal(foodName.text.toString(),snippet.text.toString(),
+                        "long","ok",1,123,12.3,45.3245,addressEdit.text.toString())
+                var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+                mdb.mealModel().insetMeal(meal)
+                activity.fragmentManager.popBackStack()
+            }
+        })
         return rootView
     }
 

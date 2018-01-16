@@ -24,11 +24,6 @@ import com.google.android.gms.maps.model.Marker
 import oldandBusted.MainTableFragment
 import android.arch.persistence.room.Room
 
-
-
-
-
-
 class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private var mapFragment: MapFragment? = null
@@ -191,7 +186,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     } // permissions end
 
     // identifer: AddFragemnt -> 0,   add more
-    fun changeFragment(identifer: Int){
+    public fun changeFragment(identifer: Int){
 
         when (identifer){
             0
