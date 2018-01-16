@@ -8,6 +8,7 @@
 ]{scrreprt}
 
 
+\usepackage[dvipsnames]{xcolor} % for kotlin	
 %\usepackage{spreadtab}
 \usepackage{xspace}
 \usepackage[ngerman]{babel}
@@ -20,13 +21,15 @@
 \usepackage{caption}
 \usepackage{pgfplots}
 \usepackage{float}
-\usepackage{xcolor}
+%\usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{tabularx}
 \usepackage{multirow} % tabelle
 \usepackage{listings} % code aus datei einbinden
 \usepackage{scrhack}
 \usepackage{comment}
+
+
 
 
 % word wrap with a red arrow
@@ -40,6 +43,36 @@
 
 \graphicspath{{./}{./images/}}
 
+
+% kotlin syntax highlighting
+\lstdefinelanguage{Kotlin}{
+  keywords={package, as, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, yield, typeof, yield, typeof, class, interface, enum, object, override, public, private, get, set, import, abstract, },
+  keywordstyle=\color{NavyBlue}\bfseries,
+  ndkeywords={@Deprecated, Iterable, Int, Integer, Float, Double, String, Runnable, dynamic},
+  ndkeywordstyle=\color{BurntOrange}\bfseries,
+  emph={println, return@, forEach,},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  sensitive=true,
+  commentstyle=\color{gray}\ttfamily,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  stringstyle=\color{ForestGreen}\ttfamily,
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+}
+
+
+
+% word wrap with a red arrow
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
 % #################################################################
 
 \hyphenation{Cha-otn-gsch-werl}
@@ -49,6 +82,13 @@
 \chead{}
 \ohead{\includegraphics[height=0.05\textheight]{fh_logo}}
 \pagestyle{scrheadings}
+
+
+
+
+
+
+
 
 
 \setcounter{secnumdepth}{5}
@@ -103,6 +143,8 @@ Durch eigenen Bedarf motiviert entstand die Idee für diese App. Um aus wiederke
 Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler Mobiler Anwendungen zusätzlich erleichtert.
 
 
+\lstinputlisting[language=Kotlin]{content/Kotlin_example.kt}
+
 \newpage
 
 \chapter{Entwurfsphase}
@@ -122,7 +164,7 @@ Erster Screen Entwurf:
 	\centering
   \frame{ \includegraphics[width=1.0\textwidth]{main} }
 	\caption{Main Screen}
-	\label{fig1}
+	\label{fig2}
 \end{figure}
 
 
@@ -131,7 +173,7 @@ Erster Screen Entwurf:
 	\centering
   \frame{ \includegraphics[width=1.0\textwidth]{popover} }
 	\caption{Popover Screen}
-	\label{fig1}
+	\label{fig3}
 \end{figure}
 
 
@@ -140,7 +182,7 @@ Erster Screen Entwurf:
 	\centering
   \frame{ \includegraphics[width=1.0\textwidth]{settings} }
 	\caption{Settings Screen}
-	\label{fig1}
+	\label{fig4}
 \end{figure}
 
 
@@ -151,7 +193,7 @@ Erster Screen Entwurf:
 	\centering
   \frame{ \includegraphics[width=1.0\textwidth]{main_burger} }
 	\caption{Main Hamburger Menü Screen}
-	\label{fig1}
+	\label{fig5}
 \end{figure}
 
 
@@ -160,7 +202,7 @@ Erster Screen Entwurf:
 	\centering
   \frame{ \includegraphics[width=1.0\textwidth]{main_burger} }
 	\caption{Karten Screen}
-	\label{fig1}
+	\label{fig6}
 \end{figure}
 
 
