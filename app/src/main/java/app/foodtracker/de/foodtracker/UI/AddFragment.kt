@@ -1,6 +1,5 @@
 package app.foodtracker.de.foodtracker.UI
 
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,6 +18,7 @@ import android.graphics.Camera
 import android.location.*
 import android.net.Uri
 import android.os.Environment
+import android.support.v4.app.Fragment
 import android.support.v4.content.FileProvider
 import android.widget.Button
 import app.foodtracker.de.foodtracker.Model.AppDatabase
@@ -173,7 +173,7 @@ class AddFragment : Fragment(), LocationListener{
         super.onStop()
         locationManager.removeUpdates(this)
         val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
 
     }
 

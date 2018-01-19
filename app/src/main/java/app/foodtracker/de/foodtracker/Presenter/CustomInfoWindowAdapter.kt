@@ -15,7 +15,7 @@ import app.foodtracker.de.foodtracker.R
 
 /**
  * Created by normen on 17.10.17.
- */
+
 
 //### work in progress ###
 
@@ -60,4 +60,4 @@ class CustomInfoWindowAdapter internal constructor(activity: Activity) : GoogleM
     override fun onInfoWindowClick(marker: Marker) {
         Log.d("bonobo", "bonobo")
     }
-}
+}*/

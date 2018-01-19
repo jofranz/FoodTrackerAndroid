@@ -24,16 +24,21 @@ import com.google.android.gms.maps.model.Marker
 import android.arch.persistence.room.Room
 import android.location.LocationManager
 import app.foodtracker.de.foodtracker.UI.DetailFragment
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
+import android.view.ViewParent
+import app.foodtracker.de.foodtracker.Presenter.PageAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
-class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+
+class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var mapFragment: MapFragment? = null
     private var addFragment: AddFragment? = null
     private var tableFragment: TableFragment? = null
     private lateinit var detailFragment: DetailFragment
     private val markers: Array<Marker>? = null
-    private val manager = fragmentManager
-    private lateinit var drawer: DrawerLayout
+    private val manager = supportFragmentManager
     private val key = "id"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,28 +47,31 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
+        //val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        //navigationView.setNavigationItemSelectedListener(this)
+        val tabLayout = findViewById<View>(R.id.tab_layout) as TabLayout
+        tabLayout.addTab(tabLayout.newTab().setText("LIST"))
+        tabLayout.addTab(tabLayout.newTab().setText("MAP"))
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+
+        val viewPager = findViewById<ViewPager>(R.id.pager)
+        val pageViewAdapter = PageAdapter(supportFragmentManager, 2)
+
+        viewPager.adapter = pageViewAdapter
+        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewPager.currentItem = tab!!.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
 
 
-
-        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
-
-    }
-
-
-    // set up navigation drawer
-    override fun onBackPressed() {
-        val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -89,6 +97,8 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         val id = item.itemId
+
+        /*
         when (id) {
         // when(id) for left menu
 
@@ -122,10 +132,9 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 trans.replace(R.id.main_content_activity, mapFragment)
                 trans.commit()
             }
-        }
+            */
 
-        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-        drawer.closeDrawer(GravityCompat.START)
+
         return true
     } // navigation drawer end
 
@@ -184,16 +193,17 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
     } // permissions end
 
-    // identifer: AddFragemnt -> 0,   add more
-    public fun changeFragment(identifer: Int, id: Int = 0){
 
-        when (identifer){
+    // identifer: AddFragemnt -> 0,   add more
+    public fun changeFragment(identifer: Int, id: Int = 0) {
+
+        when (identifer) {
             0
             -> if (!manager.popBackStackImmediate(AddFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()
                 trans.addToBackStack(AddFragment::class.java.name)
                 addFragment = AddFragment()
-                trans.replace(R.id.main_content_activity, addFragment)
+                trans.replace(R.id.main_layout, addFragment)
                 trans.commit()
                 getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.title = "ADD A MEAL"
@@ -204,9 +214,9 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 trans.addToBackStack(DetailFragment::class.java.name)
                 detailFragment = DetailFragment()
                 val bundle = Bundle()
-                bundle.putInt("id",id)
+                bundle.putInt("id", id)
                 detailFragment.arguments = bundle
-                trans.replace(R.id.main_content_activity,detailFragment)
+                trans.replace(R.id.main_layout, detailFragment)
                 trans.commit()
                 getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.title = "Detail's"

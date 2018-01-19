@@ -1,12 +1,12 @@
 package app.foodtracker.de.foodtracker.UI
 
-import android.app.Fragment
 import android.graphics.Point
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.R.id.container
+import android.support.v4.app.Fragment
 import android.support.v4.app.INotificationSideChannel
 import android.util.Log
 import android.view.LayoutInflater

@@ -1,11 +1,11 @@
 package app.foodtracker.de.foodtracker.UI
 
-import android.app.Fragment
 import android.content.Context
 import android.location.*
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import app.foodtracker.de.foodtracker.Model.AppDatabase
-import app.foodtracker.de.foodtracker.Presenter.CustomInfoWindowAdapter
 import app.foodtracker.de.foodtracker.Model.MarkerRepresentation
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
@@ -66,7 +65,7 @@ class MapFragment : Fragment(), LocationListener {
                 googleMap!!.addMarker(MarkerOptions().position(currentLocation!!).title("You are here")
                         .snippet("This is a snippet:" + currentLocation!!.toString())).tag = markerRepresentation
                 //set own CustomInfoWindow
-                googleMap!!.setInfoWindowAdapter(CustomInfoWindowAdapter(activity))
+                //googleMap!!.setInfoWindowAdapter(CustomInfoWindowAdapter(activity))
                 googleMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
 
             }
@@ -88,7 +87,7 @@ class MapFragment : Fragment(), LocationListener {
 
             for (item in mealList){
 
-                var imageBitmap = MediaStore.Images.Media.getBitmap(view.context.contentResolver, Uri.parse(item.imagePath))
+                var imageBitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, Uri.parse(item.imagePath))
                 val time: GregorianCalendar = GregorianCalendar()
                 time.timeInMillis = item.time
                 val markerRepresentation = MarkerRepresentation(imageBitmap,time,item.foodname)
