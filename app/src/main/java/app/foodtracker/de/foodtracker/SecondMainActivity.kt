@@ -21,19 +21,20 @@ import app.foodtracker.de.foodtracker.UI.AddFragment
 import app.foodtracker.de.foodtracker.UI.MapFragment
 import app.foodtracker.de.foodtracker.UI.TableFragment
 import com.google.android.gms.maps.model.Marker
-import oldandBusted.MainTableFragment
 import android.arch.persistence.room.Room
+import android.location.LocationManager
+import app.foodtracker.de.foodtracker.UI.DetailFragment
 
 class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private var mapFragment: MapFragment? = null
-    private var mainTableFragment: MainTableFragment? = null
     private var addFragment: AddFragment? = null
     private var tableFragment: TableFragment? = null
-    private val meals: Array<Meal>? = null
+    private lateinit var detailFragment: DetailFragment
     private val markers: Array<Marker>? = null
     private val manager = fragmentManager
     private lateinit var drawer: DrawerLayout
+    private val key = "id"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +95,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             R.id.nav_main_table // for main table fragment
             -> if (!manager.popBackStackImmediate(TableFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()
-                trans.addToBackStack(MainTableFragment::class.java.name)
+                trans.addToBackStack(TableFragment::class.java.name)
                 if (tableFragment == null) {
                     tableFragment = TableFragment()
                 }
@@ -117,9 +118,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             -> if (!manager.popBackStackImmediate(MapFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()
                 trans.addToBackStack(MapFragment::class.java.name)
-                if (mapFragment == null) {
-                    mapFragment = MapFragment()
-                }
+                mapFragment = MapFragment()
                 trans.replace(R.id.main_content_activity, mapFragment)
                 trans.commit()
             }
@@ -186,20 +185,31 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     } // permissions end
 
     // identifer: AddFragemnt -> 0,   add more
-    public fun changeFragment(identifer: Int){
+    public fun changeFragment(identifer: Int, id: Int = 0){
 
         when (identifer){
             0
             -> if (!manager.popBackStackImmediate(AddFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()
                 trans.addToBackStack(AddFragment::class.java.name)
-                if (addFragment == null) {
-                    addFragment = AddFragment()
-                }
+                addFragment = AddFragment()
                 trans.replace(R.id.main_content_activity, addFragment)
                 trans.commit()
                 getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
-
+                supportActionBar?.title = "ADD A MEAL"
+            }
+            1
+            -> if (!manager.popBackStackImmediate(DetailFragment::class.java.name, 0)) {
+                val trans = manager.beginTransaction()
+                trans.addToBackStack(DetailFragment::class.java.name)
+                detailFragment = DetailFragment()
+                val bundle = Bundle()
+                bundle.putInt("id",id)
+                detailFragment.arguments = bundle
+                trans.replace(R.id.main_content_activity,detailFragment)
+                trans.commit()
+                getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+                supportActionBar?.title = "Detail's"
             }
 
         }
@@ -207,7 +217,5 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
 
-    inner class Item(val id: Long, val title: String)
 }
-
 

@@ -16,7 +16,7 @@ abstract class AppDatabase : RoomDatabase() {
         private var INSTANCE: AppDatabase? = null
         @JvmStatic fun getInMemoryDatabase(context: Context): AppDatabase {
             if (INSTANCE == null) {
-                INSTANCE = Room.inMemoryDatabaseBuilder(context.applicationContext, AppDatabase::class.java).allowMainThreadQueries().build()
+                INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java,"foodtracker").allowMainThreadQueries().build()
             }
             return INSTANCE!!
         }
@@ -24,6 +24,8 @@ abstract class AppDatabase : RoomDatabase() {
         @JvmStatic fun destroyInstance() {
             INSTANCE = null
         }
+
+
     }
 }
 

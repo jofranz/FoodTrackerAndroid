@@ -14,8 +14,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="foodname">Food name:</string>
+    <string name="foodname">Name:</string>
     <string name="snippet">Description:</string>
     <string name="address">Address:</string>
+    <string name="notChoosen">Not choosen yet</string>
+    <string name="longDetail">Long Description</string>
+    <string name="longEffect">Effect:</string>
 
 </resources>

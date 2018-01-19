@@ -17,10 +17,11 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
                     @ColumnInfo(name = "lat") var lat: Double,
                     @ColumnInfo(name = "lng") var lng: Double,
                     @ColumnInfo(name = "addressline") var addressline: String,
-                    @ColumnInfo(name="imagePath") var imagePath: String){
+                    @ColumnInfo(name="imagePath") var imagePath: String)
+                    {
 
     @ColumnInfo(name = "id")
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
 
     @Dao interface MealDao{
         @Query("select * from meal")
@@ -37,6 +38,9 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
 
         @Query("select * from meal where addressLine == :addressline")
         fun findAllMealsWithAddress(addressline: String) : List<Meal>
+
+        @Query("select * from meal where foodName == :foodName AND time == :time")
+        fun findAllMealsByNameAndTime(foodName: String, time: Long) : Meal
 
         @Insert(onConflict = 1)
         fun insetMeal(meal: Meal)
