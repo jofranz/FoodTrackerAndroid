@@ -51,7 +51,8 @@ class TableFragment : Fragment() {
         recyclerView?.adapter = adapter
         val fab1 = view.findViewById<FloatingActionButton>(R.id.fab)
         fab1.setOnClickListener(View.OnClickListener {
-            //(activity as SecondMainActivity).changeFragment(0)
+            (activity as SecondMainActivity).changeFragment(2) //#todo auskommentieren
+/*
             val trans = fragmentManager.beginTransaction()
 
             trans.replace(R.id.root_frame, AddFragment())
@@ -59,19 +60,18 @@ class TableFragment : Fragment() {
             trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             trans.addToBackStack(null)
 
-            trans.commit()
-
+            trans.commit() */
         })
 
 
         fun buildNavigationMenu() {
-            val days_menu = ArrayList<String>()
+            val daysMenu = ArrayList<String>()
 
-            days_menu.add("Heute")
-            days_menu.add("Gestern")
-            days_menu.add("Woche")
-            days_menu.add("2 Wochen")
-            days_menu.add("Monat")
+            daysMenu.add(getString(R.string.dropDownToday))
+            daysMenu.add(getString(R.string.dropDownYesterday))
+            daysMenu.add(getString(R.string.dropDownWeek))
+            daysMenu.add(getString(R.string.dropDown2Weeks))
+            daysMenu.add(getString(R.string.dropDownMonth))
 
             val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setNavigationMode(android.support.v7.app.ActionBar.NAVIGATION_MODE_LIST)
@@ -79,11 +79,10 @@ class TableFragment : Fragment() {
             val arrayAdapter = ArrayAdapter(
                     actionBar?.getThemedContext(), // added ?
                     R.layout.support_simple_spinner_dropdown_item_large,
-                    days_menu)
+                    daysMenu)
             arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_list_item)
             actionBar?.setListNavigationCallbacks(arrayAdapter, OnDaySelectedListener()) // added ?
         }
-
         buildNavigationMenu()
         return view
     }

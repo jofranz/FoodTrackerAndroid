@@ -23,6 +23,7 @@ import app.foodtracker.de.foodtracker.UI.MapFragment
 import app.foodtracker.de.foodtracker.UI.TableFragment
 import com.google.android.gms.maps.model.Marker
 import android.arch.persistence.room.Room
+import android.content.Intent
 import android.location.LocationManager
 import app.foodtracker.de.foodtracker.UI.DetailFragment
 import android.support.design.widget.TabLayout
@@ -177,6 +178,15 @@ class SecondMainActivity : AppCompatActivity(){
                 supportActionBar?.title = "Detail's"
             }
 
+            2
+            -> if (true) {
+                val intent = Intent(this, AddActivity::class.java).apply {
+                    putExtra("extratext", "text")
+                }
+                startActivity(intent)
+            }
+
+
         }
 
     }
@@ -213,4 +223,3 @@ class SecondMainActivity : AppCompatActivity(){
         return true
     }
 }
-

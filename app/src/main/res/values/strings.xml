@@ -17,8 +17,14 @@
     <string name="foodname">Name:</string>
     <string name="snippet">Description:</string>
     <string name="address">Address:</string>
-    <string name="notChoosen">Not choosen yet</string>
+    <string name="notChosen">Not chosen yet</string>
     <string name="longDetail">Long Description</string>
     <string name="longEffect">Effect:</string>
+
+    <string name="dropDownToday">Today</string>
+    <string name="dropDownYesterday">Yesterday</string>
+    <string name="dropDownWeek">Week</string>
+    <string name="dropDown2Weeks">2 Weeks</string>
+    <string name="dropDownMonth">Month</string>
 
 </resources>
