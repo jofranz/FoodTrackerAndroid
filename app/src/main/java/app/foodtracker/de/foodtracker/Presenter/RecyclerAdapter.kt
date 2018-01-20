@@ -3,10 +3,12 @@ import android.content.Context
 import android.media.Image
 import android.net.Uri
 import android.provider.MediaStore
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import app.foodtracker.de.foodtracker.Model.AppDatabase
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 import java.util.*
 import app.foodtracker.de.foodtracker.Model.Meal
@@ -29,7 +31,7 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
         return ItemsHolder(inflatedView)
     }
 
-    class ItemsHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener{
+    class ItemsHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener{
 
         private var view = v
 
@@ -38,21 +40,25 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
             var imageBitmap = MediaStore.Images.Media.getBitmap(view.context.contentResolver,Uri.parse(meal.imagePath))
             thumbnail.setImageBitmap(imageBitmap)
             foodName.text = meal.foodname
-            date.text = meal.addressline
+            var time1 = GregorianCalendar()
+            time1.timeInMillis = meal.time
+            date.text = time1.time.toString()
         }
         init {
             v.setOnClickListener(this)
+            v.setOnLongClickListener(this)
         }
 
         override  fun onClick(v: View?) {
-            var mContext = v!!.context
-            var main = mContext as SecondMainActivity
+            val mContext = v!!.context
+            val main = mContext as SecondMainActivity
             main.changeToDetail(v.id)
         }
 
-        fun onLongClick(view: View): Boolean {
-            // Handle long click
-            // Return true to indicate the click was handled
+        override fun onLongClick(v: View?): Boolean {
+            val mContext = v!!.context
+            val main = mContext as SecondMainActivity
+            main.deleteItem(v.id)
             return true
         }
         companion object {

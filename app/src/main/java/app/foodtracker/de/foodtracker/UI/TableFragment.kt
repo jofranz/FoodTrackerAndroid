@@ -20,7 +20,7 @@ import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 class TableFragment : Fragment() {
 
 
-    private lateinit var adapter: RecyclerAdapter
+    lateinit var adapter: RecyclerAdapter
     var recyclerView: RecyclerView? = null
 
 
@@ -66,5 +66,9 @@ class TableFragment : Fragment() {
 
     fun scrollTo(position: Int) {
         recyclerView?.smoothScrollToPosition(position)
+    }
+    fun refreshView(){
+        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+        showsMeals(mdb.mealModel().getAllMeal())
     }
 }

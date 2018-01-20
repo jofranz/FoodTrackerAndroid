@@ -28,7 +28,9 @@ import app.foodtracker.de.foodtracker.UI.DetailFragment
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.ViewParent
+import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -200,6 +202,15 @@ class SecondMainActivity : AppCompatActivity(){
         trans.addToBackStack(null)
 
         trans.commit()
+    }
+    fun deleteItem(id: Int) : Boolean{
+        val mdb = AppDatabase.getInMemoryDatabase(applicationContext)
+        val meal = mdb.mealModel().findMealById(id)
+        mdb.mealModel().deleteMeal(meal)
+
+        val tableFragment: TableFragment = supportFragmentManager.findFragmentByTag("table") as TableFragment
+        tableFragment.refreshView()
+        return true
     }
 }
 
