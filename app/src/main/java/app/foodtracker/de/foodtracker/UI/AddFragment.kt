@@ -122,6 +122,7 @@ class AddFragment : Fragment(), LocationListener{
 
     override fun onResume() {
         super.onResume()
+        (activity as SecondMainActivity).showHome()
         inputManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_NOT_ALWAYS)
 

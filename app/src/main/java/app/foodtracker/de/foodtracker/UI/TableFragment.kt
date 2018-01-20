@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -45,9 +46,17 @@ class TableFragment : Fragment(), OnClickListener{
         recyclerView?.layoutManager = mLayoutManager
         recyclerView?.adapter = adapter
         val fab1 = view.findViewById<FloatingActionButton>(R.id.fab)
-        fab1.setOnClickListener(OnClickListener {
-            //showsMeals(mdb.mealModel().getAllMeal())
-            (activity as SecondMainActivity).changeFragment(0)
+        fab1.setOnClickListener(View.OnClickListener {
+            //(activity as SecondMainActivity).changeFragment(0)
+            val trans = fragmentManager.beginTransaction()
+
+            trans.replace(R.id.root_frame, AddFragment())
+
+            trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            trans.addToBackStack(null)
+
+            trans.commit()
+
         })
 
 
@@ -107,6 +116,7 @@ class TableFragment : Fragment(), OnClickListener{
 
     override fun onStart() {
         super.onStart()
+        (activity as SecondMainActivity).hideHome()
         var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
         showsMeals(mdb.mealModel().getAllMeal())
     }

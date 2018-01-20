@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.R
+import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.add_fragment.*
 import org.w3c.dom.Text
 import kotlinx.android.synthetic.main.detail_view.*
@@ -35,6 +36,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as SecondMainActivity).showHome()
         val bundle = this.arguments
         if (bundle != null) {
             val id = bundle.getInt(key)

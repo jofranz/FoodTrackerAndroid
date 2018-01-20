@@ -47,7 +47,13 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
         override  fun onClick(v: View?) {
             var mContext = v!!.context
             var main = mContext as SecondMainActivity
-            main.changeFragment(1, v!!.id)
+            main.changeToDetail(v.id)
+        }
+
+        fun onLongClick(view: View): Boolean {
+            // Handle long click
+            // Return true to indicate the click was handled
+            return true
         }
         companion object {
             private val key = "CITY"

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import app.foodtracker.de.foodtracker.UI.AddFragment
 import app.foodtracker.de.foodtracker.UI.MapFragment
+import app.foodtracker.de.foodtracker.UI.RootFragment
 import app.foodtracker.de.foodtracker.UI.TableFragment
 
 class PageAdapter(fragmentManager: FragmentManager,numberOfTabs: Int): FragmentStatePagerAdapter(fragmentManager){
@@ -18,7 +19,7 @@ class PageAdapter(fragmentManager: FragmentManager,numberOfTabs: Int): FragmentS
     override fun getItem(position: Int): Fragment? {
         when (position) {
             0 -> {
-                return TableFragment()
+                return RootFragment()
             }
             1 -> {
                 return MapFragment()
