@@ -16,7 +16,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import app.foodtracker.de.foodtracker.*
 import app.foodtracker.de.foodtracker.Model.AppDatabase
+import app.foodtracker.de.foodtracker.Presenter.DividerItemDecoration
 import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
+import android.support.v4.content.ContextCompat
+import android.graphics.drawable.Drawable
+
+
 
 
 /**
@@ -38,6 +43,10 @@ class TableFragment : Fragment(), OnClickListener{
         val view = inflater?.inflate(R.layout.table_fragment, container, false)
 
         recyclerView = view!!.findViewById<RecyclerView>(R.id.recycler)
+
+        val dividerDrawable = ContextCompat.getDrawable(activity.applicationContext, R.drawable.divider)
+
+        recyclerView!!.addItemDecoration(DividerItemDecoration(dividerDrawable))
         val mLayoutManager = LinearLayoutManager(this.activity)
 
 
