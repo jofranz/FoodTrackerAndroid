@@ -20,6 +20,6 @@
     android:id="@android:id/text1"
     style="@style/MySpinnerDropDownItemStyle"
     android:singleLine="true"
-    android:layout_width="100px"
+    android:layout_width="match_parent"
     android:layout_height="?attr/dropdownListPreferredItemHeight"
     android:ellipsize="marquee"/>

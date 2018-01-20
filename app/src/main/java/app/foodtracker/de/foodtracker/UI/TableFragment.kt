@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -22,13 +23,7 @@ import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 /**
  * Created by normen on 12.11.17.
  */
-class TableFragment : Fragment(), OnClickListener{
-
-
-    override fun onClick(v: View?) {
-        print("clicked !!!!!")
-    }
-
+class TableFragment : Fragment() {
 
     private lateinit var adapter: RecyclerAdapter
     var recyclerView: RecyclerView? = null
@@ -60,14 +55,14 @@ class TableFragment : Fragment(), OnClickListener{
         })
 
 
-
         fun buildNavigationMenu() {
+            val days_menu = ArrayList<String>()
 
-            val days_menu = arrayOfNulls<String>(3)
-
-            for (i in 0 until days_menu.size) {
-                days_menu[i] = "blablablablablablablablalalala"
-            }
+            days_menu.add("Heute")
+            days_menu.add("Gestern")
+            days_menu.add("Woche")
+            days_menu.add("2 Wochen")
+            days_menu.add("Monat")
 
             val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setNavigationMode(android.support.v7.app.ActionBar.NAVIGATION_MODE_LIST)
@@ -78,10 +73,6 @@ class TableFragment : Fragment(), OnClickListener{
                     days_menu)
             arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_list_item)
             actionBar?.setListNavigationCallbacks(arrayAdapter, OnDaySelectedListener()) // added ?
-
-
-
-
         }
 
         buildNavigationMenu()
@@ -93,15 +84,19 @@ class TableFragment : Fragment(), OnClickListener{
     // must be moved to kotlin style listener method ^
     private inner class OnDaySelectedListener : android.support.v7.app.ActionBar.OnNavigationListener {
 
+
+
+
         private var isSynthetic = true
 
         override fun onNavigationItemSelected(itemPosition: Int, itemId: Long): Boolean {
+
             if (runsAtLeastOnAndroidNougat() && isSynthetic) {
                 isSynthetic = false
                 return true
             }
-            if (itemPosition < 3) {
-                print("!!! selected")
+            if (itemPosition < 5) {
+                Log.d("jfjf", "click itemId: " + itemId + " item position:" + itemPosition)
                 return true
             }
             return false
