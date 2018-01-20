@@ -17,7 +17,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import app.foodtracker.de.foodtracker.*
 import app.foodtracker.de.foodtracker.Model.AppDatabase
+import app.foodtracker.de.foodtracker.Presenter.DividerItemDecoration
 import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
+import android.support.v4.content.ContextCompat
+import android.graphics.drawable.Drawable
+
+
 
 
 /**
@@ -25,7 +30,7 @@ import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
  */
 class TableFragment : Fragment() {
 
-    private lateinit var adapter: RecyclerAdapter
+    lateinit var adapter: RecyclerAdapter
     var recyclerView: RecyclerView? = null
 
 
@@ -33,6 +38,10 @@ class TableFragment : Fragment() {
         val view = inflater?.inflate(R.layout.table_fragment, container, false)
 
         recyclerView = view!!.findViewById<RecyclerView>(R.id.recycler)
+
+        val dividerDrawable = ContextCompat.getDrawable(activity.applicationContext, R.drawable.divider)
+
+        recyclerView!!.addItemDecoration(DividerItemDecoration(dividerDrawable))
         val mLayoutManager = LinearLayoutManager(this.activity)
 
 
@@ -125,5 +134,9 @@ class TableFragment : Fragment() {
 
     fun scrollTo(position: Int) {
         recyclerView?.smoothScrollToPosition(position)
+    }
+    fun refreshView(){
+        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+        showsMeals(mdb.mealModel().getAllMeal())
     }
 }

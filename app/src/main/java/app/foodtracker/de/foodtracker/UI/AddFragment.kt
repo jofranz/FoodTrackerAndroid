@@ -109,7 +109,7 @@ class AddFragment : Fragment(), LocationListener{
 
                 val bestMatch = if (matches!!.isEmpty()) null else matches[0]
                 var meal = Meal(foodName.text.toString(),snippet.text.toString(),
-                        "long","ok",1,currentTime,lat,lng,bestMatch!!.getAddressLine(0).toString(),absulutePath.toString())
+                        "long","ok",1,currentTime,lat,lng,bestMatch?.getAddressLine(0).toString(),absulutePath.toString())
                 var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
                 mdb.mealModel().insetMeal(meal)
                 Log.d("Meal: ",meal.toString())

@@ -19,7 +19,7 @@ class RootFragment: Fragment(){
 
         val transaction = fragmentManager.beginTransaction()
 
-        transaction.replace(R.id.root_frame, TableFragment())
+        transaction.replace(R.id.root_frame, TableFragment(),"table")
 
         transaction.commit()
 
