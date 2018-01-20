@@ -187,11 +187,15 @@ class SecondMainActivity : AppCompatActivity(){
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(false);
     }
 
-    fun changeToDetail(){
+    fun changeToDetail(id: Int){
         val trans = supportFragmentManager.beginTransaction()
 
-        trans.replace(R.id.root_frame, DetailFragment())
+        var detailFragment = DetailFragment()
+        val bundle = Bundle()
+        bundle.putInt("id", id)
+        detailFragment.arguments = bundle
 
+        trans.replace(R.id.root_frame, detailFragment)
         trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         trans.addToBackStack(null)
 
