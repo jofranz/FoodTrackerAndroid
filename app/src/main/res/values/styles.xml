@@ -16,4 +16,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MySpinnerDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Title
+        </item>
+    </style>
+
+    <style name="MySpinnerDropDownItemListStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:paddingLeft">16dp</item>
+    </style>
+
 </resources>
