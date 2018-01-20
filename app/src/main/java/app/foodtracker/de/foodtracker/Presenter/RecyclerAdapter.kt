@@ -1,9 +1,11 @@
 package app.foodtracker.de.foodtracker.Presenter
 import android.content.Context
+import android.content.DialogInterface
 import android.media.Image
 import android.net.Uri
 import android.provider.MediaStore
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
@@ -15,6 +17,9 @@ import app.foodtracker.de.foodtracker.Model.Meal
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.map_fragment.view.*
+import android.R.string.cancel
+
+
 
 /**
  * Created by normen on 06.11.17.
@@ -56,9 +61,10 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
         }
 
         override fun onLongClick(v: View?): Boolean {
+
             val mContext = v!!.context
             val main = mContext as SecondMainActivity
-            main.deleteItem(v.id)
+            main.showAlertDialog(v.id)
             return true
         }
         companion object {

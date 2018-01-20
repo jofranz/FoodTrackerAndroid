@@ -1,6 +1,7 @@
 package app.foodtracker.de.foodtracker.UI
 
 import android.app.ActionBar
+import android.app.Notification
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -21,6 +22,13 @@ import app.foodtracker.de.foodtracker.Presenter.DividerItemDecoration
 import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 import android.support.v4.content.ContextCompat
 import android.graphics.drawable.Drawable
+import app.foodtracker.de.foodtracker.R.mipmap.ic_launcher
+import android.app.PendingIntent
+import android.content.Intent
+import android.content.Context.NOTIFICATION_SERVICE
+import android.app.NotificationManager
+import android.content.Context
+import app.foodtracker.de.foodtracker.R.mipmap.ic_launcher
 
 
 
@@ -88,6 +96,13 @@ class TableFragment : Fragment() {
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        (activity as SecondMainActivity).hideHome()
+        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+        showsMeals(mdb.mealModel().getAllMeal())
+    }
+
 
     // must be moved to kotlin style listener method ^
     private inner class OnDaySelectedListener : android.support.v7.app.ActionBar.OnNavigationListener {
@@ -117,12 +132,6 @@ class TableFragment : Fragment() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        (activity as SecondMainActivity).hideHome()
-        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
-        showsMeals(mdb.mealModel().getAllMeal())
-    }
     fun showsMeals(meals: List<app.foodtracker.de.foodtracker.Model.Meal>) {
         recyclerView?.adapter = RecyclerAdapter(meals)
     }
@@ -137,5 +146,10 @@ class TableFragment : Fragment() {
     fun refreshView(){
         var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
         showsMeals(mdb.mealModel().getAllMeal())
+    }
+
+    fun notifyUser(){
+        //TODO: Notification https://stackoverflow.com/questions/36902667/how-to-schedule-notification-in-android
+        
     }
 }

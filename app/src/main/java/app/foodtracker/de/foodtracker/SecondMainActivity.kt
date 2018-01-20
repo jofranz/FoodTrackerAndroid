@@ -2,6 +2,7 @@ package app.foodtracker.de.foodtracker
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.app.FragmentManager
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
@@ -18,21 +19,21 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import app.foodtracker.de.foodtracker.Model.Meal
-import app.foodtracker.de.foodtracker.UI.AddFragment
-import app.foodtracker.de.foodtracker.UI.MapFragment
-import app.foodtracker.de.foodtracker.UI.TableFragment
 import com.google.android.gms.maps.model.Marker
 import android.arch.persistence.room.Room
 import android.content.Intent
+import android.content.Context
+import android.content.DialogInterface
 import android.location.LocationManager
-import app.foodtracker.de.foodtracker.UI.DetailFragment
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
+import android.support.v7.view.ContextThemeWrapper
 import android.util.Log
 import android.view.ViewParent
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
+import app.foodtracker.de.foodtracker.UI.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -222,4 +223,19 @@ class SecondMainActivity : AppCompatActivity(){
         tableFragment.refreshView()
         return true
     }
+    fun showAlertDialog(itemId: Int){
+        val alertDialogBuilder = android.app.AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle(R.string.deleteEntry)
+        alertDialogBuilder.setMessage(R.string.deleteMessage)
+        alertDialogBuilder.setPositiveButton(R.string.ok, DialogInterface.OnClickListener{
+            dialog, id -> deleteItem(itemId)
+        })
+        alertDialogBuilder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, id ->
+            // cancel
+        })
+        alertDialogBuilder.show()
+
+    }
+
 }
+
