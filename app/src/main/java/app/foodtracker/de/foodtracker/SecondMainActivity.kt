@@ -2,6 +2,7 @@ package app.foodtracker.de.foodtracker
 
 import android.Manifest
 import android.app.Activity
+import android.app.FragmentManager
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -25,13 +26,14 @@ import android.arch.persistence.room.Room
 import android.location.LocationManager
 import app.foodtracker.de.foodtracker.UI.DetailFragment
 import android.support.design.widget.TabLayout
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
 import android.view.ViewParent
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class SecondMainActivity : AppCompatActivity(){
 
     private var mapFragment: MapFragment? = null
     private var addFragment: AddFragment? = null
@@ -71,6 +73,7 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
         })
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -79,64 +82,14 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean{
+        when(item.itemId){
+            android.R.id.home -> supportFragmentManager.popBackStack()
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-
-        return if (id == R.id.action_settings) {
-            true
-        } else super.onOptionsItemSelected(item)
-
+        }
+        return true
     }
 
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val id = item.itemId
-
-        /*
-        when (id) {
-        // when(id) for left menu
-
-            R.id.nav_main_table // for main table fragment
-            -> if (!manager.popBackStackImmediate(TableFragment::class.java.name, 0)) {
-                val trans = manager.beginTransaction()
-                trans.addToBackStack(TableFragment::class.java.name)
-                if (tableFragment == null) {
-                    tableFragment = TableFragment()
-                }
-                trans.replace(R.id.main_content_activity, tableFragment)
-                trans.commit()
-            }
-
-            R.id.nav_edit // for entry fragment
-            -> if (!manager.popBackStackImmediate(AddFragment::class.java.name, 0)) {
-                val trans = manager.beginTransaction()
-                trans.addToBackStack(AddFragment::class.java.name)
-                if (addFragment == null) {
-                    addFragment = AddFragment()
-                }
-                trans.replace(R.id.main_content_activity, addFragment)
-                trans.commit()
-            }
-
-            R.id.nav_map // for map fragment
-            -> if (!manager.popBackStackImmediate(MapFragment::class.java.name, 0)) {
-                val trans = manager.beginTransaction()
-                trans.addToBackStack(MapFragment::class.java.name)
-                mapFragment = MapFragment()
-                trans.replace(R.id.main_content_activity, mapFragment)
-                trans.commit()
-            }
-            */
-
-
-        return true
-    } // navigation drawer end
 
 
     // set up permissions
@@ -225,7 +178,24 @@ class SecondMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
 
     }
+    fun showHome(){
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+    }
 
 
+    fun hideHome(){
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(false);
+    }
+
+    fun changeToDetail(){
+        val trans = supportFragmentManager.beginTransaction()
+
+        trans.replace(R.id.root_frame, DetailFragment())
+
+        trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        trans.addToBackStack(null)
+
+        trans.commit()
+    }
 }
 

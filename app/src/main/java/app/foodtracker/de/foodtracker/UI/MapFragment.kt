@@ -114,6 +114,7 @@ class MapFragment : Fragment(), LocationListener {
 
     override fun onResume() {
         super.onResume()
+        (activity as SecondMainActivity).hideHome()
         if ((activity as SecondMainActivity).checkLocationPermission()) {
 
             val location = locationManager!!.getLastKnownLocation(provider)

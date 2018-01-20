@@ -3,6 +3,7 @@ package app.foodtracker.de.foodtracker.UI
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -35,14 +36,23 @@ class TableFragment : Fragment() {
         recyclerView?.adapter = adapter
         val fab1 = view.findViewById<FloatingActionButton>(R.id.fab)
         fab1.setOnClickListener(View.OnClickListener {
-            //showsMeals(mdb.mealModel().getAllMeal())
-            (activity as SecondMainActivity).changeFragment(0)
+            //(activity as SecondMainActivity).changeFragment(0)
+            val trans = fragmentManager.beginTransaction()
+
+            trans.replace(R.id.root_frame, AddFragment())
+
+            trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            trans.addToBackStack(null)
+
+            trans.commit()
+
         })
         return view
     }
 
     override fun onStart() {
         super.onStart()
+        (activity as SecondMainActivity).hideHome()
         var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
         showsMeals(mdb.mealModel().getAllMeal())
     }

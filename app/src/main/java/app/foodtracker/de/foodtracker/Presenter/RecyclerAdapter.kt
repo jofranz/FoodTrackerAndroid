@@ -47,7 +47,7 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
         override  fun onClick(v: View?) {
             var mContext = v!!.context
             var main = mContext as SecondMainActivity
-            main.changeFragment(1, v!!.id)
+            main.changeToDetail()
         }
         companion object {
             private val key = "CITY"
