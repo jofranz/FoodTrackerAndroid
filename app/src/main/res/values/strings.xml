@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">FoodTracker</string>
+    <string name="app_name">FT</string>
     <string name="action_settings">Settings</string>
     <string name="title_permission">Location Permission</string>
     <string name="text_permission">Its required to add a location to a meal</string>
     <string name="ok">OK</string>
     <string name="map_add">ADD MARKER</string>
-    <string name ="take_photo">Foto machen</string>
+    <string name="take_photo">Foto machen</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -29,5 +29,6 @@
     <string name="dropDownWeek">Week</string>
     <string name="dropDown2Weeks">2 Weeks</string>
     <string name="dropDownMonth">Month</string>
+    <string name="title_activity_add">AddActivity</string>
 
 </resources>

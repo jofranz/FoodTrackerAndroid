@@ -78,9 +78,12 @@
 \hyphenation{Cha-otn-gsch-werl}
 \setlength\headheight{1.75cm}
 
-\ihead{\small{Hochschule Hof}}
+
+\ihead{\small{Android Food Tracking App in Kotlin}}
 \chead{}
 \ohead{\includegraphics[height=0.05\textheight]{fh_logo}}
+\ifoot{\small{Smartphone Programming III}}
+\ofoot{\small{Johannes Franz \& Normen Krug}}
 \pagestyle{scrheadings}
 
 
@@ -107,7 +110,7 @@
 }
 \publishers{Vorgelegt bei Prof. Dr. Michael Stepping}
 
-\author{Johannes Franz, Normen Krug}
+\author{Johannes Franz \& Normen Krug}
 
 
 \date{Wintersemester 2017/2018}
@@ -128,81 +131,83 @@
 
 
 \chapter{Einleitung}
-Ziel ist es eine App zu entwickeln, die einen Rückschluss von sich zugenommener Nahrung auf Symptome zu ermöglichen. Dabei helfen die in der App eingetragenen Datenpunkte und Fotos diese mit einer z.B. allergischen Reaktion zu verknüpfen.
-Zielgruppe sind dabei Menschen, die wegen Erkrankungen aus ihren zu sich zugenommenen Speisen und Getränken Rückschlüsse auf ihr Wohlbefinden treffen wollen.
+Ziel ist es eine App zu entwickeln, die einen Rückschluss von sich zugenommener Nahrung auf Symptome zu ermöglichen. Dabei helfen die in der App eingetragenen Datenpunkte und Fotos diese z.B. mit einer allergischen Reaktion zu verknüpfen.
+Zielgruppe sind Menschen, die wegen Erkrankungen aus ihren zu sich zugenommenen Speisen und Getränken Rückschlüsse auf ihr Wohlbefinden treffen wollen, um zukünftig solche Speisen zu meiden.
 
 
 \newpage
 
 \chapter{Motivation}
-Durch eigenen Bedarf motiviert entstand die Idee für diese App. Um aus wiederkehrenden Mahlzeiten eine Unverträglichkeit abzuleiten, stellt die App Funktionen bereit.
+Durch eigenen Bedarf motiviert entstand die Idee zu dieser App. Um aus wiederkehrenden Mahlzeiten eine Unverträglichkeit abzuleiten, stellt die App entsprechende Funktionen bereit.
 
 
 
 \chapter{Kotlin als Programmiersprache}
-Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler Mobiler Anwendungen zusätzlich erleichtert.
+Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch bei Kotlin der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler mobiler Anwendungen zusätzlich erleichtert.\\
 
-
+Kotlin Code Beispiel:
 \lstinputlisting[language=Kotlin]{content/Kotlin_example.kt}
 
 \newpage
 
 \chapter{Entwurfsphase}
-In der Entwurfsphase wurde keine Zeit verschwendet und der Fokus auf Handskizzen gelegt. Da die Teammitglieder die zur Verfügung stehenden Steuerelemente in Android  Der unnötige Schritt diese in einem professionellen Entwurf nachzubauen sparte Zeit, so dass sich direkt mit der Programmierung beschäftigt werden konnte.
+In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf Handskizzen gelegt. Der Zwischenschritt diese Skizzen in einem professionellen Entwurf nachzubauen sparte Zeit, so dass sich direkt mit der Programmierung beschäftigt werden konnte.
 
-Erster Screen Entwurf:
 
-\begin{figure}[ht]
+
+\section{Main Screen}
+\begin{figure}[H]
 	\centering
-  \frame{ \includegraphics[width=1.0\textwidth]{add_entwurf} }
-	\caption{Hinzufügen eines Eintrags}
-	\label{fig1}
-\end{figure}
-
-
-\begin{figure}[ht]
-	\centering
-  \frame{ \includegraphics[width=1.0\textwidth]{main} }
+  \frame{ \includegraphics[scale=0.7]{main} }
 	\caption{Main Screen}
-	\label{fig2}
+	\label{main}
 \end{figure}
 
 
-
-\begin{figure}[ht]
+\section{Hinzufügen eines Eintrags}
+\begin{figure}[H]
 	\centering
-  \frame{ \includegraphics[width=1.0\textwidth]{popover} }
+  \frame{ \includegraphics[scale=0.7]{add_entwurf} }
+	\caption{Hinzufügen eines Eintrags}
+	\label{add_entwurf}
+\end{figure}
+
+
+\section{Popover im Main Screen}
+\begin{figure}[H]
+	\centering
+  \frame{ \includegraphics[scale=0.7]{popover} }
 	\caption{Popover Screen}
-	\label{fig3}
+	\label{popover}
 \end{figure}
 
 
-
-\begin{figure}[ht]
+\section{Settings}
+\begin{figure}[H]
 	\centering
-  \frame{ \includegraphics[width=1.0\textwidth]{settings} }
+  \frame{ \includegraphics[scale=0.7]{settings} }
 	\caption{Settings Screen}
-	\label{fig4}
+	\label{settings}
 \end{figure}
 
 
-
-
-
-\begin{figure}[ht]
+\section{Navigation Drawer Menü}
+Der auch unter "Hamburger Menü" bekannte Navigation Drawer war einer der ersten Ideen für die App. Viele Funktionen später als Tab Bar bzw. als Icons in der oberen rechten Ecke umgesetzt wurden, sind diese Buttons an die genannten Stellen hin verschoben worden. Im Sinne der Anwenderfreundlichkeit wurde sich am Ende gegen den Navigation Drawer entschieden.
+\begin{figure}[H]
 	\centering
-  \frame{ \includegraphics[width=1.0\textwidth]{main_burger} }
-	\caption{Main Hamburger Menü Screen}
-	\label{fig5}
+  \frame{ \includegraphics[scale=0.7]{main_burger} }
+	\caption{Navigation Drawer Menü Screen}
+	\label{main_burger}
 \end{figure}
 
 
-
-\begin{figure}[ht]
+\section{Karten Screen}
+Der Karten Screen zeigt eine Google Map. Darin repräsentieren Pins die Standorte an denen Essens Einträge hinzugefügt wurden.
+\begin{figure}[H]
 	\centering
-  \frame{ \includegraphics[width=1.0\textwidth]{main_burger} }
+  \frame{ \includegraphics[scale=0.7]{map} }
 	\caption{Karten Screen}
-	\label{fig6}
+	\label{map}
 \end{figure}
 
 
@@ -214,24 +219,28 @@ Erster Screen Entwurf:
 \section{Datenbank}
 Für die Speicherung der Daten wurde sich für eine SQLite Datenbank entschieden. Das hat mehrere Vorteile. Zum einen lässt sich der Inhalt dieser Datenbank sehr einfach exportieren, um auf einem anderen Gerät wieder eingespielt werden zu können, zum anderen bietet eine Datenbankstruktur viele Möglichkeiten zur Datenanalyse mit schnellem Zugriff ohne wie bisher mit Files arbeiten zu müssen.
 
-\section{Room}
-Room wurde als Datenbank Abstraktionsschicht verwendet.
+\subsection{Room}
+Room wurde als Datenbank Abstraktionsschicht verwendet und bietet einfachen Datenbankzugriff ohne komplexe SQL Befehle.
+\url{https://developer.android.com/topic/libraries/architecture/room.html}
 
 
+\subsection{Google Maps}
+Für die Karte ist die Google Maps API eingesetzt worden. Darin wird für jeden Eintrag ein Pin in der Karte dargestellt.
+Der API Key wurde dankensweise von Normen bereitgestellt.
 
 \newpage
 
-\chapter{Aufgetretene Probleme}
+\chapter{Herausforderungen}
+In jedem Projekt treten bei ansteigender Komplexität Probleme auf. Diese sind in diesem Abschnitt vermerkt.
 
-
-\begin{enumerate}
-\item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste.
-\end{enumerate}
+\begin{itemize}
+\item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste. Mangelnde Dokumentation. Probleme beim Integrieren von bereits vorhandenen Projekten.
+\end{itemize}
 
 \newpage
 
 \chapter{Lessons learned}
-Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut werden musste, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.
+Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut wurde, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.
 
 
 

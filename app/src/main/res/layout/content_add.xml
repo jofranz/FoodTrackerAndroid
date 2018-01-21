@@ -8,10 +8,6 @@
     tools:context=".AddActivity"
     tools:showIn="@layout/activity_add">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/textView"/>
+    <include layout="@layout/add_fragment"></include>
 
 </android.support.v4.widget.NestedScrollView>
