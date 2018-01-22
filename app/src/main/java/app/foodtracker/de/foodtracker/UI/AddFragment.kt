@@ -14,7 +14,6 @@ import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.app.Activity
-import android.graphics.Camera
 import android.location.*
 import android.net.Uri
 import android.os.Environment
@@ -27,7 +26,6 @@ import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import java.io.File
 import java.io.IOException
-import java.security.Provider
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -79,7 +77,7 @@ class AddFragment : Fragment(), LocationListener{
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.add_fragment, container, false)
+        val rootView = inflater.inflate(R.layout.add_constraint, container, false)
 
 
 

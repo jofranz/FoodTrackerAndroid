@@ -6,48 +6,47 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <EditText
+    <TextView
         android:id="@+id/addressEdit"
         android:layout_width="242dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="114dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="29dp"
         android:background="@color/colorGray"
+        android:hint="Address"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/infoTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/snippet" />
+        app:layout_constraintEnd_toEndOf="@+id/snippet"
+        app:layout_constraintStart_toStartOf="@+id/snippet" />
 
     <TextView
         android:id="@+id/infoTime"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginBottom="80dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Date / Time"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="128dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="ADD ENTRY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/snippet"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/snippet" />
 
     <EditText
         android:id="@+id/foodName"
@@ -61,26 +60,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Food Name" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/snippet"
-        android:inputType="textMultiLine"
-        android:lines="3"
-        android:minLines="3"
-        android:maxLines="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -89,11 +72,14 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Food Description"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:maxLines="5"
+        android:minLines="3"
         app:layout_constraintBottom_toTopOf="@+id/addressEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodName"
-        tools:text="Snippet" />
+        app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
 </android.support.constraint.ConstraintLayout>
 

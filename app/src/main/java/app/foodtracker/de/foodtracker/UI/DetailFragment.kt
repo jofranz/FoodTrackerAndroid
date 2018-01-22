@@ -16,7 +16,7 @@ import android.widget.TextView
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
-import kotlinx.android.synthetic.main.add_fragment.*
+import kotlinx.android.synthetic.main.add_constraint.*
 import org.w3c.dom.Text
 import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*

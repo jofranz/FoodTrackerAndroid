@@ -51,6 +51,11 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDndEOi-RmtYIPGu-QMRghDF8SeSZ-FtOc" />
+
+        <activity
+            android:name=".EditActivity"
+            android:label="@string/title_activity_edit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

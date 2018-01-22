@@ -182,11 +182,19 @@ class SecondMainActivity : AppCompatActivity(){
             2
             -> if (true) {
                 val intent = Intent(this, AddActivity::class.java).apply {
-                    putExtra("extratext", "valuetext")
+                    putExtra("extraAdd", "valueAddt")
                 }
                 startActivity(intent)
             }
 
+
+            3
+            -> if (true) {
+                val intent = Intent(this, EditActivity::class.java).apply {
+                    putExtra("extraEdit", "valueEdit")
+                }
+                startActivity(intent)
+            }
 
         }
 
