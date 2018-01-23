@@ -75,7 +75,6 @@ class TableFragment : Fragment() {
             actionBar?.setNavigationMode(android.support.v7.app.ActionBar.NAVIGATION_MODE_LIST)
 
 
-
             val arrayAdapter = ArrayAdapter(
                     actionBar?.getThemedContext(), // added ?
                     R.layout.support_simple_spinner_dropdown_item_large,
@@ -164,7 +163,6 @@ class TableFragment : Fragment() {
                         showsMeals(meals)
                     }
                 }
-
             }
             return false
         }
@@ -172,7 +170,6 @@ class TableFragment : Fragment() {
         private fun runsAtLeastOnAndroidNougat(): Boolean {
             return Build.VERSION.SDK_INT > Build.VERSION_CODES.M
         }
-
     }
 
 

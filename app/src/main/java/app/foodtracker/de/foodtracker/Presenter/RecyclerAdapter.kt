@@ -48,6 +48,33 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
             var time1 = GregorianCalendar()
             time1.timeInMillis = meal.time
             date.text = time1.time.toString()
+
+
+
+            when (meal.effect) {
+                0 -> {
+                    effect.text = "really bad"
+                }
+
+                1 -> {
+                    effect.text = "bad"
+                }
+
+                2 -> {
+                    effect.text = "neutral"
+                }
+
+                3 -> {
+                    effect.text = "good"
+                }
+
+                4 -> {
+                    effect.text = "really good"
+                }
+
+
+            }
+            //effect.text = meal.effect.toString()
         }
         init {
             v.setOnClickListener(this)
