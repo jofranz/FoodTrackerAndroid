@@ -192,5 +192,6 @@ class TableFragment : Fragment() {
 
     fun notifyUser(){
         //TODO: Notification https://stackoverflow.com/questions/36902667/how-to-schedule-notification-in-android
+        
     }
 }

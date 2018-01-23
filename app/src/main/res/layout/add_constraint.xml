@@ -4,82 +4,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/addressEdit"
-        android:layout_width="242dp"
+        android:id="@+id/addressAdd"
+        android:layout_width="316dp"
         android:layout_height="26dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/colorGray"
+        android:layout_marginTop="16dp"
         android:hint="Address"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/infoTime"
-        app:layout_constraintEnd_toEndOf="@+id/snippet"
-        app:layout_constraintStart_toStartOf="@+id/snippet" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shortDescription" />
 
     <TextView
-        android:id="@+id/infoTime"
-        android:layout_width="wrap_content"
+        android:id="@+id/infoTimeAdd"
+        android:layout_width="316dp"
         android:layout_height="31dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Time"
         android:text="Date / Time"
         android:textColor="@android:color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/addressAdd" />
 
 
     <Button
-        android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:id="@+id/submitAdd"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="333dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="8dp"
         android:text="ADD ENTRY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/snippet"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="@+id/snippet" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoTime" />
 
     <EditText
-        android:id="@+id/foodName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/foodNameAdd"
+        android:layout_width="316dp"
+        android:layout_height="43dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Food Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/snippet"
-        android:layout_width="match_parent"
+        android:id="@+id/shortDescription"
+        android:layout_width="316dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Food Description"
         android:inputType="textMultiLine"
         android:lines="3"
         android:maxLines="5"
         android:minLines="3"
-        app:layout_constraintBottom_toTopOf="@+id/addressEdit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodNameAdd" />
+
+    <ImageView
+        android:id="@+id/addressIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="Pin"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/addressAdd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodName" />
+        app:layout_constraintTop_toTopOf="@+id/addressAdd"
+        app:srcCompat="@drawable/ic_map_marker" />
+
+    <ImageView
+        android:id="@+id/foodNameIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Foode Name"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/foodNameAdd"
+        app:layout_constraintEnd_toStartOf="@+id/foodNameAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/foodNameAdd"
+        app:srcCompat="@drawable/ic_food_fork_drink_title" />
+
+    <ImageView
+        android:id="@+id/shortDescriptionIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Description"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/shortDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shortDescription"
+        app:srcCompat="@drawable/ic_note_text_description" />
+
+    <ImageView
+        android:id="@+id/infoTimeIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="Time"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/infoTime"
+        app:layout_constraintEnd_toStartOf="@+id/infoTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/infoTime"
+        app:srcCompat="@drawable/ic_clock_date_time" />
 
 </android.support.constraint.ConstraintLayout>
 

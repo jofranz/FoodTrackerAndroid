@@ -35,6 +35,7 @@
         android:layout_marginStart="8dp"
         android:gravity="start"
         android:text="food name"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintEnd_toStartOf="@+id/effect"
         app:layout_constraintStart_toEndOf="@+id/thumbnail"

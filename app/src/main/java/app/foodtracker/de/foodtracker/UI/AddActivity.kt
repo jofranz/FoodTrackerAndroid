@@ -44,14 +44,14 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
 
 
     override fun onClick(v: View?) {
-        val name = foodName.text.toString()
-        val snippet = snippet.text.toString()
-        val addres = addressEdit.text.toString()
+        val name = foodNameAdd .text.toString()
+        val snippet = shortDescription.text.toString()
+        val address =  addressAdd.text.toString()
         if (absulutePath == null){
             absulutePath = Uri.parse("android.resource://app.foodtracker.de.foodtracker/" + R.drawable.ic_add_a_photo_black_48dp)
         }
         val mdb = AppDatabase.getInMemoryDatabase(applicationContext)
-        val meal = Meal(name,snippet,"","",2,currentTime,lat,lng,addres,absulutePath!!.toString())
+        val meal = Meal(name,snippet,"","",2,currentTime,lat,lng,address,absulutePath!!.toString())
         mdb.mealModel().insetMeal(meal)
         val intent = Intent(this, SecondMainActivity::class.java).apply {
             putExtra("extraAdd", "valueAddt")
@@ -65,9 +65,9 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
         //setSupportActionBar(toolbar)
         val currentDate = GregorianCalendar()
         val currentTime  = currentDate.timeInMillis
-        infoTime.setText(currentDate.time.toString())
+        infoTimeAdd.setText(currentDate.time.toString())
         fab.setOnClickListener { view -> dispatchTakePictureIntent() }
-        submit.setOnClickListener(this)
+        submitAdd.setOnClickListener(this)
     }
 
     private fun dispatchTakePictureIntent() {
@@ -144,7 +144,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
         }
 
         val bestMatch = if (matches!!.isEmpty()) null else matches[0]
-        addressEdit.text = bestMatch?.getAddressLine(0)
+        addressAdd.text = bestMatch?.getAddressLine(0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

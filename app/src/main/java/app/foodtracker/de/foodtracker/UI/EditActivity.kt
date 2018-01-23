@@ -61,7 +61,4 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
         addressEdit.setText(meal.addressline)
         //setSupportActionBar(toolbar)
     }
-
-
-
 }
