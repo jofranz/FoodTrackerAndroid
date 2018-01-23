@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@mipmap/ic_launcher"
-        app:showAsAction="never"
-        android:orderInCategory="70"
-        android:title="settings">
-    </item>
-    <item
-        android:id="@+id/item_starred_list"
-        android:icon="@drawable/ic_add_a_photo_black_48dp"
-        app:showAsAction="never"
-        android:title="star-list"
-        android:titleCondensed="star-list-c">
-    </item>
-    <item
-        android:id="@+id/item_alarms"
-        android:icon="@drawable/ic_add_a_photo_black_48dp"
-        app:showAsAction="never"
-        android:title="alarms"
-        android:titleCondensed="alarms-c">
-    </item>
-    <item
-        android:id="@+id/item_changes"
-        android:icon="@drawable/ic_add_a_photo_black_48dp"
-        app:showAsAction="never"
-        android:title="changes"
-        android:titleCondensed="changes-c">
-    </item>
+
 </menu>

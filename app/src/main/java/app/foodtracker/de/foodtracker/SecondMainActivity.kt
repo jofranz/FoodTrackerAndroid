@@ -15,9 +15,7 @@ import com.google.android.gms.maps.model.Marker
 import android.content.Intent
 import android.content.DialogInterface
 import android.support.design.widget.TabLayout
-import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
-import android.util.Log
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import app.foodtracker.de.foodtracker.UI.*
