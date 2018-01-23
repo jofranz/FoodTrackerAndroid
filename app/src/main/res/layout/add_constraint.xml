@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/address"
+        android:id="@+id/addressAdd"
         android:layout_width="316dp"
         android:layout_height="26dp"
         android:layout_marginEnd="8dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/shortDescription" />
 
     <TextView
-        android:id="@+id/infoTime"
+        android:id="@+id/infoTimeAdd"
         android:layout_width="316dp"
         android:layout_height="31dp"
         android:layout_marginEnd="8dp"
@@ -28,11 +28,11 @@
         android:text="Date / Time"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address" />
+        app:layout_constraintTop_toBottomOf="@+id/addressAdd" />
 
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/submitAdd"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="333dp"
         android:layout_height="48dp"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/infoTime" />
 
     <EditText
-        android:id="@+id/foodName"
+        android:id="@+id/foodNameAdd"
         android:layout_width="316dp"
         android:layout_height="43dp"
         android:layout_marginEnd="8dp"
@@ -71,7 +71,7 @@
         android:maxLines="5"
         android:minLines="3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodName" />
+        app:layout_constraintTop_toBottomOf="@+id/foodNameAdd" />
 
     <ImageView
         android:id="@+id/addressIcon"
@@ -81,9 +81,9 @@
         android:layout_marginStart="8dp"
         android:contentDescription="Pin"
         android:tint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/address"
+        app:layout_constraintEnd_toStartOf="@+id/addressAdd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/address"
+        app:layout_constraintTop_toTopOf="@+id/addressAdd"
         app:srcCompat="@drawable/ic_map_marker" />
 
     <ImageView
@@ -96,10 +96,10 @@
         android:layout_marginTop="8dp"
         android:contentDescription="Foode Name"
         android:tint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/foodName"
-        app:layout_constraintEnd_toStartOf="@+id/foodName"
+        app:layout_constraintBottom_toBottomOf="@+id/foodNameAdd"
+        app:layout_constraintEnd_toStartOf="@+id/foodNameAdd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/foodName"
+        app:layout_constraintTop_toTopOf="@+id/foodNameAdd"
         app:srcCompat="@drawable/ic_food_fork_drink_title" />
 
     <ImageView
