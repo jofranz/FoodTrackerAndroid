@@ -1,4 +1,4 @@
-package app.foodtracker.de.foodtracker.UI
+/*package app.foodtracker.de.foodtracker.UI
 
 import android.content.Intent
 import android.os.Bundle
@@ -33,7 +33,6 @@ import java.util.*
 /**
  * Created by jfranz on 02.11.2017.
  */
-//TODO get lat and lng
 //TODO Settings screen
 class AddFragment : Fragment(), LocationListener{
 
@@ -142,51 +141,4 @@ class AddFragment : Fragment(), LocationListener{
             }
         }
     }
-
-    companion object {
-
-        internal val REQUEST_IMAGE_CAPTURE = 1
-    }
-
-    fun createImageFile() : File{
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val fileName = "JPEG_" + timeStamp + "_";
-        val storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(
-                fileName,
-                ".jpg",
-                storageDir
-        )
-        return image
-    }
-
-    override fun onLocationChanged(location: Location?) {
-        if ((activity as SecondMainActivity).checkLocationPermission()) {
-            if(location?.latitude != null)
-            lat = location.latitude
-            lng = location!!.longitude
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        locationManager.removeUpdates(this)
-        val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view?.windowToken, 0)
-
-    }
-
-
-    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onProviderEnabled(provider: String?) {
-        //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onProviderDisabled(provider: String?) {
-        //To change body of created functions use File | Settings | File Templates.
-    }
-
-}
+}*/

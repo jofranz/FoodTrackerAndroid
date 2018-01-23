@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddActivity"
+            android:name=".UI.AddActivity"
             android:label="Add Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -48,7 +48,7 @@
             android:value="AIzaSyDndEOi-RmtYIPGu-QMRghDF8SeSZ-FtOc" />
 
         <activity
-            android:name=".EditActivity"
+            android:name=".UI.EditActivity"
             android:label="@string/title_activity_edit"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -39,7 +39,7 @@ class MapFragment : Fragment(), LocationListener {
     private var lat: Double = 0.toDouble()
     private var lng: Double = 0.toDouble()
 
-
+    //TODO: Implement CostumInfoWindow 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.map_fragment, container, false)
 
