@@ -28,7 +28,7 @@
     <string name="dropDownYesterday">Yesterday</string>
     <string name="dropDownWeek">Week</string>
     <string name="dropDown2Weeks">2 Weeks</string>
-    <string name="dropDownMonth">Month</string>
+    <string name="dropDownMonth">All</string>
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_edit">EditActivity</string>
     <string name="large_text">

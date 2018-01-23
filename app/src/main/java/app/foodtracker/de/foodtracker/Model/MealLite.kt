@@ -33,8 +33,11 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
         @Query("select * from meal where id = :id")
         fun findMealById(id: Int) : Meal
 
-        @Query("select * from meal where time >= :time")
+        @Query("select * from meal where time <= :time")
         fun findAllMealsAfter(time: Long) : List<Meal>
+
+        @Query("select * from meal where :start <= time AND :end >= time")
+        fun findAllMealsAfter(start: Long, end: Long) : List<Meal>
 
         @Query("select * from meal where addressLine == :addressline")
         fun findAllMealsWithAddress(addressline: String) : List<Meal>
