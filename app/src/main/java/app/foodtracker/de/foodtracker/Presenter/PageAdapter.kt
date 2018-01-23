@@ -11,6 +11,7 @@ class PageAdapter(fragmentManager: FragmentManager,numberOfTabs: Int): FragmentS
 
      private var mNumOfTabs = 0
 
+
     init {
         mNumOfTabs = numberOfTabs
     }

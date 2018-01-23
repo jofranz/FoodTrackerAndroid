@@ -56,6 +56,7 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
         if (!oldMeal.effectDescription.equals("")){
             effect.setText(oldMeal.effectDescription)
         }
+        seekBar.progress = oldMeal.effect
         time.timeInMillis = meal.time
         infoTime.setText(time.time.toString())
         addressEdit.setText(meal.addressline)

@@ -99,69 +99,15 @@ class TableFragment : Fragment() {
     private inner class OnDaySelectedListener : android.support.v7.app.ActionBar.OnNavigationListener {
 
 
-
-
-        private var isSynthetic = true
-
         override fun onNavigationItemSelected(itemPosition: Int, itemId: Long): Boolean {
             //TODO Make Asnyc
-            if (runsAtLeastOnAndroidNougat() && isSynthetic) {
-                isSynthetic = false
-                return true
+
+            if((activity as SecondMainActivity).statOfTab == 1){
+
             }
-            if (itemPosition < 5) {
-                var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
-                when(itemPosition){
-                    0 ->{
-                        val date = GregorianCalendar()
-
-                        var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
-                        tmp = tmp - 1
-                        var yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
-                        Log.d("Bonobo",yesterday.time.toString())
-                        var meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
-                        showsMeals(meals)
-                    }
-                    1 -> {
-
-                        val date = GregorianCalendar()
-
-                        val tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
-                        val end = tmp - 1
-                        val start = tmp - 2
-                        val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
-                        Log.d("Bonobo",yesterday.time.toString())
-                        val startDate = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),start)
-                        val endDate = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),end)
-                        val meals = mdb.mealModel().findAllMealsAfter(startDate.timeInMillis,endDate.timeInMillis)
-                        showsMeals(meals)
-
-                    }
-                    2 ->{
-                        val date = GregorianCalendar()
-
-                        var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
-                        tmp = tmp - 7
-                        val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
-                        Log.d("Bonobo",yesterday.time.toString())
-                        val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
-                        showsMeals(meals)
-                    }
-                    3->{
-                        val date = GregorianCalendar()
-
-                        var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
-                        tmp = tmp - 14
-                        val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
-                        Log.d("Bonobo",yesterday.time.toString())
-                        val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
-                        showsMeals(meals)
-                    }
-                    4->{
-
-                        val meals = mdb.mealModel().getAllMeal()
-                        showsMeals(meals)
-                    }
+            else {
+                if (itemPosition < 5) {
+                    sortDateTable(itemPosition)
                 }
             }
             return false
@@ -192,5 +138,60 @@ class TableFragment : Fragment() {
     fun notifyUser(){
         //TODO: Notification https://stackoverflow.com/questions/36902667/how-to-schedule-notification-in-android
         
+    }
+    fun sortDateTable(itemPosition: Int){
+        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+        when(itemPosition){
+            0 ->{
+                val date = GregorianCalendar()
+
+                var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                tmp = tmp - 1
+                var yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                Log.d("Bonobo",yesterday.time.toString())
+                var meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+                showsMeals(meals)
+            }
+            1 -> {
+
+                val date = GregorianCalendar()
+
+                val tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                val end = tmp - 1
+                val start = tmp - 2
+                val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                Log.d("Bonobo",yesterday.time.toString())
+                val startDate = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),start)
+                val endDate = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),end)
+                val meals = mdb.mealModel().findAllMealsAfter(startDate.timeInMillis,endDate.timeInMillis)
+                showsMeals(meals)
+
+            }
+            2 ->{
+                val date = GregorianCalendar()
+
+                var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                tmp = tmp - 7
+                val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                Log.d("Bonobo",yesterday.time.toString())
+                val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+                showsMeals(meals)
+            }
+            3->{
+                val date = GregorianCalendar()
+
+                var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                tmp = tmp - 14
+                val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                Log.d("Bonobo",yesterday.time.toString())
+                val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+                showsMeals(meals)
+            }
+            4->{
+
+                val meals = mdb.mealModel().getAllMeal()
+                showsMeals(meals)
+            }
+        }
     }
 }
