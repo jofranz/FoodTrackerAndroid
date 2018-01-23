@@ -137,7 +137,9 @@ class SecondMainActivity : AppCompatActivity(){
 
         when (identifer) {
             0
-            -> {}
+            -> {
+
+            }
             1
             -> if (!manager.popBackStackImmediate(DetailFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()

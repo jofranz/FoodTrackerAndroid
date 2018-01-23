@@ -12,6 +12,7 @@ import app.foodtracker.de.foodtracker.Model.Meal
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.activity_edit.*
+import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.edit_constraint.*
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 import java.util.*
@@ -48,10 +49,13 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
         oldMeal = meal
         foodName.setText(meal.foodname)
         longDescription.setText(meal.shortDescription)
-        var time = GregorianCalendar()
+        val time = GregorianCalendar()
 
-        var imageBitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, Uri.parse(meal.imagePath))
+        val imageBitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, Uri.parse(meal.imagePath))
         mealImageView.setImageBitmap(imageBitmap)
+        if (!oldMeal.effectDescription.equals("")){
+            effect.setText(oldMeal.effectDescription)
+        }
         time.timeInMillis = meal.time
         infoTime.setText(time.time.toString())
         addressEdit.setText(meal.addressline)

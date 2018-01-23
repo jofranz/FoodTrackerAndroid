@@ -1,5 +1,6 @@
 package app.foodtracker.de.foodtracker.UI
 
+import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -17,6 +18,8 @@ import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.DividerItemDecoration
 import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 import android.support.v4.content.ContextCompat
+import java.time.Year
+import java.util.*
 
 
 /**
@@ -26,6 +29,7 @@ class TableFragment : Fragment() {
 
     lateinit var adapter: RecyclerAdapter
     var recyclerView: RecyclerView? = null
+    var currentStat = 0
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -101,14 +105,66 @@ class TableFragment : Fragment() {
         private var isSynthetic = true
 
         override fun onNavigationItemSelected(itemPosition: Int, itemId: Long): Boolean {
-
+            //TODO Make Asnyc
             if (runsAtLeastOnAndroidNougat() && isSynthetic) {
                 isSynthetic = false
                 return true
             }
             if (itemPosition < 5) {
-                Log.d("jfjf", "click itemId: " + itemId + " item position:" + itemPosition)
-                return true
+                var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+                when(itemPosition){
+                    0 ->{
+                        val date = GregorianCalendar()
+
+                        var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                        tmp = tmp - 1
+                        var yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                        Log.d("Bonobo",yesterday.time.toString())
+                        var meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+                        showsMeals(meals)
+                    }
+                    1 -> {
+
+                        val date = GregorianCalendar()
+
+                        val tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                        val end = tmp - 1
+                        val start = tmp - 2
+                        val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                        Log.d("Bonobo",yesterday.time.toString())
+                        val startDate = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),start)
+                        val endDate = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),end)
+                        val meals = mdb.mealModel().findAllMealsAfter(startDate.timeInMillis,endDate.timeInMillis)
+                        showsMeals(meals)
+
+                    }
+                    2 ->{
+                        val date = GregorianCalendar()
+
+                        var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                        tmp = tmp - 7
+                        val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                        Log.d("Bonobo",yesterday.time.toString())
+                        val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+                        showsMeals(meals)
+                    }
+                    3->{
+                        val date = GregorianCalendar()
+
+                        var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                        tmp = tmp - 14
+                        val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.MONTH),tmp)
+                        Log.d("Bonobo",yesterday.time.toString())
+                        val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+                        showsMeals(meals)
+                    }
+                    4->{
+
+                        val meals = mdb.mealModel().getAllMeal()
+                        showsMeals(meals)
+                    }
+                }
+
             }
             return false
         }
