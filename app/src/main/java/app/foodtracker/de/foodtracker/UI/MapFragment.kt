@@ -1,6 +1,7 @@
 package app.foodtracker.de.foodtracker.UI
 
 import android.content.Context
+import android.content.Intent
 import android.location.*
 import android.net.Uri
 import android.os.Bundle
@@ -17,18 +18,27 @@ import app.foodtracker.de.foodtracker.Model.MarkerRepresentation
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 import java.io.IOException
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by normen on 06.11.17.
  */
-class MapFragment : Fragment(), LocationListener {
+class MapFragment : Fragment(), LocationListener, GoogleMap.OnInfoWindowClickListener {
+    override fun onInfoWindowClick(p0: Marker?) {
+        val lat = p0!!.position!!.latitude
+        val lng = p0.position!!.longitude
+        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+
+        val meal = mdb.mealModel().findMealByLatLng(lat,lng)
+        val intent = Intent(activity, EditActivity::class.java)
+        intent.putExtra("id",meal.id.toString())
+        startActivity(intent)
+
+    }
 
     internal lateinit var mMapView: MapView
     private var googleMap: GoogleMap? = null
@@ -38,6 +48,7 @@ class MapFragment : Fragment(), LocationListener {
     private var currentLocation: LatLng? = null
     private var lat: Double = 0.toDouble()
     private var lng: Double = 0.toDouble()
+    private var markers: ArrayList<Marker> = ArrayList<Marker>()
 
     //TODO: Implement CostumInfoWindow 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,53 +59,37 @@ class MapFragment : Fragment(), LocationListener {
 
 
         mMapView.onResume() // needed to get the map to display immediately
-        mapAdd = rootView.findViewById<View>(R.id.addButton) as Button
         val crit = Criteria()
         locationManager = (activity as SecondMainActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager
         provider = locationManager!!.getBestProvider(crit, true)
 
-
-
-
-        mapAdd!!.setOnClickListener {
-            if ((activity as SecondMainActivity).checkLocationPermission()) {
-
-
-                //create a payload for the marker
-                val markerRepresentation = MarkerRepresentation()
-                googleMap!!.addMarker(MarkerOptions().position(currentLocation!!).title("You are here")
-                        .snippet("This is a snippet:" + currentLocation!!.toString())).tag = markerRepresentation
-                //set own CustomInfoWindow
-                //googleMap!!.setInfoWindowAdapter(CustomInfoWindowAdapter(activity))
-                googleMap!!.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
-
-            }
-        }
         mMapView.getMapAsync { mMap ->
-            mapAdd!!.isEnabled = true
             googleMap = mMap
 
             // For showing a move to my location button
             if ((activity as SecondMainActivity).checkLocationPermission()) {
                 googleMap!!.isMyLocationEnabled = true
             }
-            googleMap!!.setOnInfoWindowClickListener {
-                Toast.makeText(activity, "Info window clicked",
-                        Toast.LENGTH_SHORT).show()
-            }
+            googleMap!!.setOnInfoWindowClickListener(this)
             var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
             val mealList = mdb.mealModel().getAllMeal()
 
-            for (item in mealList){
+
+            for (item in mealList) {
 
                 var imageBitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, Uri.parse(item.imagePath))
                 val time: GregorianCalendar = GregorianCalendar()
                 time.timeInMillis = item.time
-                val markerRepresentation = MarkerRepresentation(imageBitmap,time,item.foodname)
+                val markerRepresentation = MarkerRepresentation(imageBitmap, time, item.foodname)
 
-                if(googleMap != null) {
-                    googleMap!!.addMarker(MarkerOptions().position(LatLng(item.lat,item.lng)).title(item.foodname)
-                            .snippet(item.shortDescription))?.tag = markerRepresentation
+                if (googleMap != null) {
+                    var markerOpt = MarkerOptions().position(LatLng(item.lat, item.lng)).title(item.foodname)
+                            .snippet(item.shortDescription)
+                    var marker1 = googleMap!!.addMarker(markerOpt)
+                    marker1.tag = markerRepresentation
+
+                    markers.add(marker1)
+                    googleMap!!.addMarker(markerOpt)?.tag = markerRepresentation
                 }
             }
             // For zooming automatically to the location of the marker
@@ -114,6 +109,7 @@ class MapFragment : Fragment(), LocationListener {
 
     override fun onResume() {
         super.onResume()
+        Log.d("onResume", "gets Called")
         (activity as SecondMainActivity).hideHome()
         if ((activity as SecondMainActivity).checkLocationPermission()) {
 
@@ -157,6 +153,59 @@ class MapFragment : Fragment(), LocationListener {
         locationManager!!.removeUpdates(this)
     }
 
+    fun sortDataMarker(itemPosition: Int) {
+        var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+        when (itemPosition) {
+            0 -> {
+                val date = GregorianCalendar()
 
+                var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                tmp = tmp - 1
+                var yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH), tmp)
+                Log.d("Bonobo", yesterday.time.toString())
+                for (item in markers) {
+                    Log.d("Knödel", item.tag.toString())
+                }
+            }
+            1 -> {
+
+                val date = GregorianCalendar()
+
+                val tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                val end = tmp - 1
+                val start = tmp - 2
+                val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH), tmp)
+                Log.d("Bonobo", yesterday.time.toString())
+                val startDate = GregorianCalendar(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH), start)
+                val endDate = GregorianCalendar(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH), end)
+                val meals = mdb.mealModel().findAllMealsAfter(startDate.timeInMillis, endDate.timeInMillis)
+
+            }
+            2 -> {
+                val date = GregorianCalendar()
+
+                var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                tmp = tmp - 7
+                val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH), tmp)
+                Log.d("Bonobo", yesterday.time.toString())
+                val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+            }
+            3 -> {
+                val date = GregorianCalendar()
+
+                var tmp = date.get(GregorianCalendar.DAY_OF_MONTH)
+                tmp = tmp - 14
+                val yesterday = GregorianCalendar(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH), tmp)
+                Log.d("Bonobo", yesterday.time.toString())
+                val meals = mdb.mealModel().findAllMealsAfter(yesterday.timeInMillis)
+            }
+            4 -> {
+
+                val meals = mdb.mealModel().getAllMeal()
+            }
+        }
+
+
+    }
 }
 

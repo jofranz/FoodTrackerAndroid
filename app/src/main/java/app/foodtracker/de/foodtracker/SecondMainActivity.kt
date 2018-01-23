@@ -14,13 +14,16 @@ import android.view.View
 import com.google.android.gms.maps.model.Marker
 import android.content.Intent
 import android.content.DialogInterface
+import android.os.Build
 import android.support.design.widget.TabLayout
-import android.support.v4.app.FragmentTransaction
+import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.util.Log
+import android.widget.ArrayAdapter
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import app.foodtracker.de.foodtracker.UI.*
+import java.util.ArrayList
 
 
 class SecondMainActivity : AppCompatActivity(){
@@ -31,6 +34,7 @@ class SecondMainActivity : AppCompatActivity(){
     private val markers: Array<Marker>? = null
     private val manager = supportFragmentManager
     private val key = "id"
+    var statOfTab = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +57,14 @@ class SecondMainActivity : AppCompatActivity(){
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 viewPager.currentItem = tab!!.position
+                statOfTab = tab.position
+                if (tab.position == 1){
+                    val myFragment: MapFragment = supportFragmentManager.fragments.get(1) as MapFragment
+
+                    if (myFragment!!.isVisible()) {
+                        myFragment.onResume()
+                    }
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -65,6 +77,15 @@ class SecondMainActivity : AppCompatActivity(){
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
     }
+
+
+
+
+        private fun runsAtLeastOnAndroidNougat(): Boolean {
+            return Build.VERSION.SDK_INT > Build.VERSION_CODES.M
+        }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -42,8 +42,11 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
         @Query("select * from meal where addressLine == :addressline")
         fun findAllMealsWithAddress(addressline: String) : List<Meal>
 
-        @Query("select * from meal where foodName == :foodName AND time == :time")
+        @Query("select * from meal where foodName = :foodName AND time = :time")
         fun findAllMealsByNameAndTime(foodName: String, time: Long) : Meal
+
+        @Query("select * from meal where lat = :lat AND lng = :lng")
+        fun findMealByLatLng(lat: Double, lng: Double): Meal
 
         @Insert(onConflict = 1)
         fun insetMeal(meal: Meal)
