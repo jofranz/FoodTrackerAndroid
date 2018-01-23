@@ -82,7 +82,7 @@ class AddFragment : Fragment(), LocationListener{
 
 
         imageView = rootView.findViewById(R.id.picturePreview)
-        addressEdit = rootView.findViewById(R.id.addressEdit)
+        addressEdit = rootView.findViewById(R.id.address)
         foodName = rootView.findViewById(R.id.foodName)
         snippet = rootView.findViewById(R.id.snippet)
         camera = rootView.findViewById(R.id.camera)

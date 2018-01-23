@@ -64,13 +64,13 @@
         android:maxLines="3"
         android:minLines="2"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/addressEdit"
+        app:layout_constraintBottom_toTopOf="@+id/address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/addressEdit"
+        android:id="@+id/address"
         android:layout_width="242dp"
         android:layout_height="20dp"
         android:layout_marginEnd="16dp"
@@ -108,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
 
     <android.support.design.widget.FloatingActionButton

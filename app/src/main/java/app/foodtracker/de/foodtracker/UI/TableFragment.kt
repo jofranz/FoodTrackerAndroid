@@ -59,7 +59,7 @@ class TableFragment : Fragment() {
         recyclerView?.adapter = adapter
         val fab1 = view.findViewById<FloatingActionButton>(R.id.fab)
         fab1.setOnClickListener(View.OnClickListener {
-            (activity as SecondMainActivity).changeFragment(2) //#todo 2 = add / 3 = edit
+            (activity as SecondMainActivity).changeFragment(3) //#todo 2 = add / 3 = edit
 /*
             val trans = fragmentManager.beginTransaction()
 

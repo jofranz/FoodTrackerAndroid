@@ -10,4 +10,10 @@
         <item name="colorAccent">#FF4081</item>
     </style>
 
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/Red</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
 </resources>

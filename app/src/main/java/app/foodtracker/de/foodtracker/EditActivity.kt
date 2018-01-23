@@ -11,8 +11,7 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
-        //setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
 
-        fab.isActivated = false
     }
 }
