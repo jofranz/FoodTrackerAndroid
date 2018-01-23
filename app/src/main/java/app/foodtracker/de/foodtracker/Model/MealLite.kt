@@ -45,6 +45,9 @@ data class Meal(@ColumnInfo(name = "foodname") var foodname: String,
         @Insert(onConflict = 1)
         fun insetMeal(meal: Meal)
 
+        @Update
+        fun updateMeal(meal: Meal)
+
         @Delete
         fun deleteMeal(meal: Meal)
 

@@ -42,7 +42,7 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
 
         fun bind(meal: Meal) = with(view) {
             this.id = meal.id
-            var imageBitmap = MediaStore.Images.Media.getBitmap(view.context.contentResolver,Uri.parse(meal.imagePath))
+            val imageBitmap = MediaStore.Images.Media.getBitmap(view.context.contentResolver,Uri.parse(meal.imagePath))
             thumbnail.setImageBitmap(imageBitmap)
             foodName.text = meal.foodname
             var time1 = GregorianCalendar()

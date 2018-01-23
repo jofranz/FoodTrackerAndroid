@@ -17,6 +17,7 @@ import android.content.DialogInterface
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
+import android.util.Log
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import app.foodtracker.de.foodtracker.UI.*
@@ -183,10 +184,8 @@ class SecondMainActivity : AppCompatActivity(){
     }
 
     fun changeToDetail(id: Int){
-        val trans = supportFragmentManager.beginTransaction()
-        val intent = Intent(this, EditActivity::class.java).apply {
-            putExtra("id", id)
-        }
+        val intent = Intent(this, EditActivity::class.java)
+        intent.putExtra("id",id.toString())
         startActivity(intent)
     }
     fun deleteItem(id: Int) : Boolean{
