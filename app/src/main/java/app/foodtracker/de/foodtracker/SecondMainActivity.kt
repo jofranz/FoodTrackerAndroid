@@ -1,46 +1,31 @@
 package app.foodtracker.de.foodtracker
 
 import android.Manifest
-import android.app.Activity
-import android.app.Dialog
-import android.app.FragmentManager
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import app.foodtracker.de.foodtracker.Model.Meal
 import com.google.android.gms.maps.model.Marker
-import android.arch.persistence.room.Room
 import android.content.Intent
-import android.content.Context
 import android.content.DialogInterface
-import android.location.LocationManager
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.ViewPager
-import android.support.v7.view.ContextThemeWrapper
 import android.util.Log
-import android.view.ViewParent
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import app.foodtracker.de.foodtracker.UI.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class SecondMainActivity : AppCompatActivity(){
 
     private var mapFragment: MapFragment? = null
-    private var addFragment: AddFragment? = null
     private var tableFragment: TableFragment? = null
     private lateinit var detailFragment: DetailFragment
     private val markers: Array<Marker>? = null
@@ -141,9 +126,7 @@ class SecondMainActivity : AppCompatActivity(){
 
 
                 } else {
-                    //TODO
                     // permission denied, boo! Disable the
-
                 }
                 return
             }
@@ -152,19 +135,11 @@ class SecondMainActivity : AppCompatActivity(){
 
 
     // identifer: AddFragemnt -> 0,   add more
-    public fun changeFragment(identifer: Int, id: Int = 0) {
+    public fun changeView(identifer: Int, id: Int = 0) {
 
         when (identifer) {
             0
-            -> if (!manager.popBackStackImmediate(AddFragment::class.java.name, 0)) {
-                val trans = manager.beginTransaction()
-                trans.addToBackStack(AddFragment::class.java.name)
-                addFragment = AddFragment()
-                trans.replace(R.id.main_layout, addFragment)
-                trans.commit()
-                getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
-                supportActionBar?.title = "ADD A MEAL"
-            }
+            -> {}
             1
             -> if (!manager.popBackStackImmediate(DetailFragment::class.java.name, 0)) {
                 val trans = manager.beginTransaction()
@@ -209,18 +184,9 @@ class SecondMainActivity : AppCompatActivity(){
     }
 
     fun changeToDetail(id: Int){
-        val trans = supportFragmentManager.beginTransaction()
-
-        var detailFragment = DetailFragment()
-        val bundle = Bundle()
-        bundle.putInt("id", id)
-        detailFragment.arguments = bundle
-
-        trans.replace(R.id.root_frame, detailFragment)
-        trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        trans.addToBackStack(null)
-
-        trans.commit()
+        val intent = Intent(this, EditActivity::class.java)
+        intent.putExtra("id",id.toString())
+        startActivity(intent)
     }
     fun deleteItem(id: Int) : Boolean{
         val mdb = AppDatabase.getInMemoryDatabase(applicationContext)

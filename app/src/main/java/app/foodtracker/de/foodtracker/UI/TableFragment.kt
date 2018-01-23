@@ -1,19 +1,15 @@
 package app.foodtracker.de.foodtracker.UI
 
-import android.app.ActionBar
-import android.app.Notification
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import app.foodtracker.de.foodtracker.*
@@ -21,16 +17,6 @@ import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.DividerItemDecoration
 import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 import android.support.v4.content.ContextCompat
-import android.graphics.drawable.Drawable
-import app.foodtracker.de.foodtracker.R.mipmap.ic_launcher
-import android.app.PendingIntent
-import android.content.Intent
-import android.content.Context.NOTIFICATION_SERVICE
-import android.app.NotificationManager
-import android.content.Context
-import app.foodtracker.de.foodtracker.R.mipmap.ic_launcher
-
-
 
 
 /**
@@ -59,7 +45,7 @@ class TableFragment : Fragment() {
         recyclerView?.adapter = adapter
         val fab1 = view.findViewById<FloatingActionButton>(R.id.fab)
         fab1.setOnClickListener(View.OnClickListener {
-            (activity as SecondMainActivity).changeFragment(3) //#todo 2 = add / 3 = edit
+            (activity as SecondMainActivity).changeView(2) //#todo 2 = add / 3 = edit
 /*
             val trans = fragmentManager.beginTransaction()
 
