@@ -49,8 +49,6 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
             time1.timeInMillis = meal.time
             date.text = time1.time.toString()
 
-
-
             when (meal.effect) {
                 0 -> {
                     effect.text = "really bad"

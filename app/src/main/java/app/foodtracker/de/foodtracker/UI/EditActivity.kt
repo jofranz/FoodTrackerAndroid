@@ -60,6 +60,6 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
         time.timeInMillis = meal.time
         infoTime.setText(time.time.toString())
         addressEdit.setText(meal.addressline)
-        //setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
     }
 }

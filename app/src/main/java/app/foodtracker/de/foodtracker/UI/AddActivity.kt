@@ -62,7 +62,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
-        //setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
         val currentDate = GregorianCalendar()
         val currentTime  = currentDate.timeInMillis
         infoTimeAdd.setText(currentDate.time.toString())
