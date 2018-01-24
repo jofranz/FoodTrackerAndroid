@@ -1,6 +1,5 @@
 package app.foodtracker.de.foodtracker.UI
 
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -18,7 +17,6 @@ import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Presenter.DividerItemDecoration
 import app.foodtracker.de.foodtracker.Presenter.RecyclerAdapter
 import android.support.v4.content.ContextCompat
-import java.time.Year
 import java.util.*
 
 
