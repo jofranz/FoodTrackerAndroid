@@ -117,7 +117,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="good || Move the dot to indicate effects of the meal. || good "
+        android:text="&lt;-- bad || Move the dot to indicate effects of the meal. || good --&gt;"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintEnd_toEndOf="parent"

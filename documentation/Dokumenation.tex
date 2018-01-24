@@ -131,7 +131,7 @@
 
 
 \chapter{Einleitung}
-Ziel ist es eine App zu entwickeln, die einen Rückschluss von sich zugenommener Nahrung auf Symptome zu ermöglichen. Dabei helfen die in der App eingetragenen Datenpunkte und Fotos diese z.B. mit einer allergischen Reaktion zu verknüpfen.
+Ziel ist es eine Open Source App zu entwickeln, die einen Rückschluss von sich zugenommener Nahrung auf Symptome zu ermöglichen. Dabei helfen die in der App eingetragenen Datenpunkte und Fotos diese z.B. mit einer allergischen Reaktion zu verknüpfen.
 Zielgruppe sind Menschen, die wegen Erkrankungen aus ihren zu sich zugenommenen Speisen und Getränken Rückschlüsse auf ihr Wohlbefinden treffen wollen, um zukünftig solche Speisen zu meiden.
 
 
@@ -139,11 +139,13 @@ Zielgruppe sind Menschen, die wegen Erkrankungen aus ihren zu sich zugenommenen 
 
 \chapter{Motivation}
 Durch eigenen Bedarf motiviert entstand die Idee zu dieser App. Um aus wiederkehrenden Mahlzeiten eine Unverträglichkeit abzuleiten, stellt die App entsprechende Funktionen bereit.
-
+Bei dieser Arbeit war außerdem das Ziel möglichst viele neue Technologien zu verwenden. So wurde bei allen Möglichkeiten der schwierigere Weg gewählt, der jedoch zu neuen Erkenntnissen führte.\\
+Beispiele dafür sind:\\
+Kotlin, LaTeX, InAPp-SQLite,Dagger, Room, Recycler View, Model View Presenter, Spinner Menu in der Toolbar
 
 
 \chapter{Kotlin als Programmiersprache}
-Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch bei Kotlin der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler mobiler Anwendungen zusätzlich erleichtert.\\
+Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch bei Kotlin der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler mobiler Anwendungen zusätzlich erleichtert. Die Entscheidung dieses Sprache zu wählen war wieder davon getrieben etwas neues auszuprobieren.\\
 
 Kotlin Code Beispiel:
 \lstinputlisting[language=Kotlin]{content/Kotlin_example.kt}
@@ -224,9 +226,20 @@ Room wurde als Datenbank Abstraktionsschicht verwendet und bietet einfachen Date
 \url{https://developer.android.com/topic/libraries/architecture/room.html}
 
 
-\subsection{Google Maps}
+\subsection{CSV Export}
+Das Ausgabeformat CSV (Comma Separated Values) beschreibt den Aufbau einer Textdatei. Darin sind alle übergebenen Spaltennamen eingetragen. Die Reihenfolge der Spaltennamen gibt die Reihenfolge der Werte, die darunter aufgelistet sind wieder. Jeder Werteeintrag ist mit einem Return vom anderen getrennt.\\
+Die App unterstützt den .CSV Export. Der Export wird als "FoodtrackerData.csv" File im Download Ordner gespeichert.
+Dieser Ordner ist auf jedem Android Gerät einsehbar.
+
+
+
+\section{Google Maps}
 Für die Karte ist die Google Maps API eingesetzt worden. Darin wird für jeden Eintrag ein Pin in der Karte dargestellt.
 Der API Key wurde dankensweise von Normen bereitgestellt.
+
+
+
+
 
 \newpage
 
@@ -243,11 +256,11 @@ In jedem Projekt treten bei ansteigender Komplexität Probleme auf. Diese sind i
 Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut wurde, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.
 
 
-
 \newpage
 
 \chapter{Weitere Arbeiten}
-In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet.
+In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet. Da das Projekt als Open Source Projekt auf GitHub zur Verfügung steht, sind forks und pull pull requests willkommen. Da das Projekt somit der Öffentlichkeit übergeben wurde, besteht durchaus ein Interesse unsererseits die App weiter zu entwickeln.
+
 
 
 
