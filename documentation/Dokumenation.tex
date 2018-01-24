@@ -156,8 +156,8 @@ Kotlin Code Beispiel:
 In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf Handskizzen gelegt. Der Zwischenschritt diese Skizzen in einem professionellen Entwurf nachzubauen sparte Zeit, so dass sich direkt mit der Programmierung beschäftigt werden konnte.
 
 
-
 \section{Main Screen}
+Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlaufen. So ist die TabBar von unten nach oben gelaufen. Die Datumsauswahl wurde durch eine sinnvollere Gruppierung ersetzt.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{main} }
@@ -167,6 +167,8 @@ In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf
 
 
 \section{Hinzufügen eines Eintrags}
+Der \textit{Add Screen} hat sich während der Entwicklung nur wenig verändert. Um es dem Nutzer einfach zu machen werden hier die aktuellen Werte einfach übernommen.
+Wichtige Felder lassen sich in einem \textit{Edit Screen} bearbeiten. Dieser wurde um einzelne Elemente erweitert, die beim Hinzufügen noch keine Rolle spielen. Beispiele dafür sind die \textit{SeekBar} und die \textit{Effekt Description}.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{add_entwurf} }
@@ -175,7 +177,9 @@ In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf
 \end{figure}
 
 
+
 \section{Popover im Main Screen}
+Da Popover keinen guten Stil in der Benutzerführung darstellen,  wurden sie durch bessere UI Features ersetzt.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{popover} }
@@ -185,6 +189,8 @@ In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf
 
 
 \section{Settings}
+Da die Komplexität der App im Hintergrund abläuft und Settings oft verwirrend sind wurde diese Idee letztendlich verworfen. \\
+Das Drei-Punkte-Menü stellt Funktionen bereit, die in den Settings sonst nicht so einfach auffindbar wären.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{settings} }
@@ -194,7 +200,7 @@ In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf
 
 
 \section{Navigation Drawer Menü}
-Der auch unter "Hamburger Menü" bekannte Navigation Drawer war einer der ersten Ideen für die App. Viele Funktionen später als Tab Bar bzw. als Icons in der oberen rechten Ecke umgesetzt wurden, sind diese Buttons an die genannten Stellen hin verschoben worden. Im Sinne der Anwenderfreundlichkeit wurde sich am Ende gegen den Navigation Drawer entschieden.
+Der auch unter "Hamburger Menü" bekannte \textit{Navigation Drawer} war einer der ersten Ideen für die App. Viele Funktionen später als Tab Bar bzw. als Icons in der oberen rechten Ecke umgesetzt wurden, sind diese Buttons an die genannten Stellen hin verschoben worden. Im Sinne der Anwenderfreundlichkeit wurde sich am Ende gegen den Navigation Drawer entschieden.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{main_burger} }
@@ -235,7 +241,7 @@ Dieser Ordner ist auf jedem Android Gerät einsehbar.
 
 \section{Google Maps}
 Für die Karte ist die Google Maps API eingesetzt worden. Darin wird für jeden Eintrag ein Pin in der Karte dargestellt.
-Der API Key wurde dankensweise von Normen bereitgestellt.
+Der API Key wurde dankenswerterweise von Normen bereitgestellt.
 
 
 
@@ -248,12 +254,15 @@ In jedem Projekt treten bei ansteigender Komplexität Probleme auf. Diese sind i
 
 \begin{itemize}
 \item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste. Mangelnde Dokumentation. Probleme beim Integrieren von bereits vorhandenen Projekten.
+\item Constraint Layouts bringen, wenn sie in einer NestedScrollView eingebunden sind gewisse Probleme. So liegt der zu bearbeitende Teil des Screens häufig außerhalb der Reichweite in der man diese bearbeiten kann.
 \end{itemize}
 
 \newpage
 
 \chapter{Lessons learned}
-Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut wurde, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.
+Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut wurde, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.\\
+
+Zu Beginn des Projektes ist es schwer die Architektur im größeren Stil planen. Da Features nach und nach erweitert wurden, ist es nötig geworden die Architektur anzupassen, was zu Mehrarbeit geführt hat.
 
 
 \newpage
