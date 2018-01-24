@@ -5,16 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Model.Meal
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.activity_edit.*
-import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.edit_constraint.*
-import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 import java.util.*
 
 class EditActivity : AppCompatActivity(), View.OnClickListener {

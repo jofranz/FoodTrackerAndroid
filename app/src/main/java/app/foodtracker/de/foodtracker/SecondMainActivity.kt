@@ -16,14 +16,14 @@ import android.content.Intent
 import android.content.DialogInterface
 import android.os.Build
 import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.util.Log
-import android.widget.ArrayAdapter
 import app.foodtracker.de.foodtracker.Model.AppDatabase
+import app.foodtracker.de.foodtracker.Presenter.CSVExportController
 import app.foodtracker.de.foodtracker.Presenter.PageAdapter
 import app.foodtracker.de.foodtracker.UI.*
-import java.util.ArrayList
+import android.app.Activity
+
+
 
 
 class SecondMainActivity : AppCompatActivity(){
@@ -90,17 +90,24 @@ class SecondMainActivity : AppCompatActivity(){
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
         when(item.itemId){
             android.R.id.home -> supportFragmentManager.popBackStack()
+            R.id.action_csvexport -> {verifyStoragePermissions(this)
+                exportCSV()}
 
         }
         return true
     }
 
-
+    fun exportCSV(){
+        val csvExport = CSVExportController()
+        csvExport.execute(applicationContext)
+    }
 
     // set up permissions
     val MY_PERMISSIONS_REQUEST_LOCATION = 99
@@ -232,6 +239,26 @@ class SecondMainActivity : AppCompatActivity(){
         })
         alertDialogBuilder.show()
 
+    }
+
+    //Permission Write
+    // Storage Permissions
+    private val REQUEST_EXTERNAL_STORAGE = 1
+    private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+
+    fun verifyStoragePermissions(activity: Activity) {
+        // Check if we have write permission
+        val permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            )
+        }
     }
 
 }
