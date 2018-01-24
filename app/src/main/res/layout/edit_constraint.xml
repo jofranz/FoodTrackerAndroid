@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="1200dp"
-    android:background="#f442b9"
     android:minHeight="500dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
         android:id="@+id/addressEdit"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Address"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mapIcon"
         app:layout_constraintTop_toBottomOf="@+id/effect" />
 
     <TextView
         android:id="@+id/infoTime"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -29,7 +30,7 @@
         android:text="Date / Time"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/addressEdit"
+        app:layout_constraintStart_toEndOf="@+id/clockIcon"
         app:layout_constraintTop_toBottomOf="@+id/addressEdit" />
 
 
@@ -48,21 +49,24 @@
 
     <EditText
         android:id="@+id/foodName"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Food Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodNameIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/longDescription"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Food Description"
@@ -71,11 +75,12 @@
         android:maxLines="5"
         android:minLines="3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/shortDescriptionIcon"
         app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -89,9 +94,10 @@
 
     <EditText
         android:id="@+id/effect"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="How are you feeling?"
         android:inputType="textMultiLine"
@@ -100,48 +106,47 @@
         android:minLines="3"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/effectIcon"
         app:layout_constraintTop_toBottomOf="@+id/longDescription" />
 
     <TextView
         android:id="@+id/effectStatus"
-        android:layout_width="316dp"
+        android:layout_width="0dp"
         android:layout_height="23dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Move the dot to indicate effects of the meal."
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/seekBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoTime" />
-
-    <ImageView
-        android:id="@+id/foodNameIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:text="<-- good || Move the dot to indicate effects of the meal. || good -->"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chart"
+        app:layout_constraintTop_toBottomOf="@+id/infoTime" />
+
+    <ImageView
+        android:id="@+id/foodNameIcon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/foodName"
-        app:layout_constraintEnd_toStartOf="@+id/foodName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/foodName"
         app:srcCompat="@drawable/ic_food_fork_drink_title" />
 
     <ImageView
         android:id="@+id/shortDescriptionIcon"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/effect"
-        app:layout_constraintEnd_toStartOf="@+id/longDescription"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/longDescription"
@@ -149,43 +154,37 @@
 
     <ImageView
         android:id="@+id/clockIcon"
-        android:layout_width="wrap_content"
+        android:layout_width="24dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/infoTime"
-        app:layout_constraintEnd_toStartOf="@+id/infoTime"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/infoTime"
         app:srcCompat="@drawable/ic_clock_date_time" />
 
     <ImageView
         android:id="@+id/mapIcon"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/addressEdit"
-        app:layout_constraintEnd_toStartOf="@+id/addressEdit"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addressEdit"
         app:srcCompat="@drawable/ic_map_marker" />
 
     <ImageView
         android:id="@+id/effectIcon"
-        android:layout_width="wrap_content"
+        android:layout_width="24dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/effect"
-        app:layout_constraintEnd_toStartOf="@+id/effect"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/effect"
@@ -195,11 +194,9 @@
         android:id="@+id/chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/effectStatus"
-        app:layout_constraintEnd_toStartOf="@+id/effectStatus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/effectStatus"
         app:srcCompat="@drawable/ic_chart_gantt" />
