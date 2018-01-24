@@ -18,7 +18,7 @@ import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.map_fragment.view.*
 import android.R.string.cancel
-
+import android.graphics.Color
 
 
 /**
@@ -52,22 +52,29 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
             when (meal.effect) {
                 0 -> {
                     effect.text = "really bad"
+                    effect.setTextColor(Color.parseColor("#B71C1C"))
                 }
 
                 1 -> {
                     effect.text = "bad"
+                    effect.setTextColor(Color.parseColor("#F44336"))
+
                 }
 
                 2 -> {
                     effect.text = "neutral"
+                    effect.setTextColor(Color.parseColor("#212121"))
+
                 }
 
                 3 -> {
                     effect.text = "good"
+                    effect.setTextColor(Color.parseColor("#76FF03"))
                 }
 
                 4 -> {
                     effect.text = "really good"
+                    effect.setTextColor(Color.parseColor("#1B5E20"))
                 }
 
 

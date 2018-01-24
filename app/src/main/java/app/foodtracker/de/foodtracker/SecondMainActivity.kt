@@ -41,7 +41,7 @@ class SecondMainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-
+        verifyStoragePermissions(this)
         //val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         //navigationView.setNavigationItemSelectedListener(this)
         val tabLayout = findViewById<View>(R.id.tab_layout) as TabLayout

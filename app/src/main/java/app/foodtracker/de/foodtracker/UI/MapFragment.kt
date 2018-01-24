@@ -110,13 +110,15 @@ class MapFragment : Fragment(), LocationListener, GoogleMap.OnInfoWindowClickLis
         (activity as SecondMainActivity).hideHome()
         if ((activity as SecondMainActivity).checkLocationPermission()) {
 
-            val location = locationManager!!.getLastKnownLocation(provider)
+            if (provider != null) {
+                val location = locationManager?.getLastKnownLocation(provider)
 
-            //set current location
-            if (location == null) {
-                locationManager!!.requestLocationUpdates(provider, 0, 0f, this)
-                locationManager!!.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, this)
+                //set current location
+                if (location == null) {
+                    locationManager!!.requestLocationUpdates(provider, 0, 0f, this)
+                    locationManager!!.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, this)
 
+                }
             }
         }
     }

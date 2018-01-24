@@ -68,6 +68,7 @@ class TableFragment : Fragment() {
             daysMenu.add(getString(R.string.dropDownWeek))
             daysMenu.add(getString(R.string.dropDown2Weeks))
             daysMenu.add(getString(R.string.dropDownMonth))
+            daysMenu.add("Negative impact")
 
             val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setNavigationMode(android.support.v7.app.ActionBar.NAVIGATION_MODE_LIST)
@@ -104,7 +105,7 @@ class TableFragment : Fragment() {
 
             }
             else {
-                if (itemPosition < 5) {
+                if (itemPosition < 6) {
                     sortDateTable(itemPosition)
                 }
             }
@@ -188,6 +189,10 @@ class TableFragment : Fragment() {
             4->{
 
                 val meals = mdb.mealModel().getAllMeal()
+                showsMeals(meals)
+            }
+            5->{
+                val meals = mdb.mealModel().findMealyByEffect()
                 showsMeals(meals)
             }
         }
