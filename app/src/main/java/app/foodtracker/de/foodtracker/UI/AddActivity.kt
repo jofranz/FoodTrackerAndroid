@@ -64,7 +64,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
         setContentView(R.layout.activity_add)
         setSupportActionBar(toolbar)
         val currentDate = GregorianCalendar()
-        val currentTime  = currentDate.timeInMillis
+        currentTime  = currentDate.timeInMillis
         infoTimeAdd.setText(currentDate.time.toString())
         fab.setOnClickListener { view -> dispatchTakePictureIntent() }
         submitAdd.setOnClickListener(this)
