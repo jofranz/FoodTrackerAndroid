@@ -36,7 +36,7 @@
     <Button
         android:id="@+id/submit"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="244dp"
+        android:layout_width="333dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FT</string>
+    <string name="app_name">Food Tracker</string>
     <string name="action_settings">Settings</string>
     <string name="title_permission">Location Permission</string>
     <string name="text_permission">Its required to add a location to a meal</string>
