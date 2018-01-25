@@ -137,7 +137,8 @@ Zielgruppe sind Menschen, die wegen Erkrankungen aus ihren zu sich zugenommenen 
 
 \chapter{Motivation}
 Durch eigenen Bedarf motiviert entstand die Idee zu dieser App. Um aus wiederkehrenden Mahlzeiten eine Unverträglichkeit abzuleiten, stellt die App entsprechende Funktionen bereit.
-Bei dieser Arbeit war außerdem das Ziel möglichst viele neue Technologien zu verwenden. So wurde bei allen Möglichkeiten der schwierigere Weg gewählt, der jedoch zu neuen Erkenntnissen führte.\\
+Bei dieser Arbeit war es außerdem das Ziel, möglichst viele neue Technologien zu verwenden und neu zu lernen. So wurde bei allen Möglichkeiten der schwierigere Weg gewählt, der jedoch zu neuen Erkenntnissen führte.\\ 
+\\
 Beispiele dafür sind:\\
 Kotlin, LaTeX, In-App-SQLite,Dagger, Room, Recycler View, Model View Presenter, Spinner Menu in der Toolbar
 
@@ -152,12 +153,12 @@ Kotlin Code Beispiel:
 \newpage
 
 \chapter{Entwurfsphase}
-In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf Handskizzen gelegt. Der Zwischenschritt diese Skizzen in einem professionellen Entwurf nachzubauen sparte Zeit, so dass sich direkt mit der Programmierung beschäftigt werden konnte.
+In der Entwurfsphase wurde keine Zeit verschwendet und direkt der Fokus auf Handskizzen gelegt. Der Zwischenschritt diese Skizzen in einem professionellen Entwurf nachzubauen sparte Zeit, so dass sich direkt mit der Programmierung beschäftigt werden konnte.
 
 
 
 \section{Main Screen}
-Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlaufen. So ist die TabBar von unten nach oben platziert worden. Die Datumsauswahl wurde durch eine sinnvollere Gruppierung ersetzt.
+Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlaufen. So ist die \textit{TabBar} von unten nach oben platziert worden. Die Datumsauswahl wurde durch eine sinnvollere Gruppierung ersetzt.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{main} }
@@ -199,7 +200,7 @@ Das Drei-Punkte-Menü stellt Funktionen bereit, die in den Settings sonst nicht 
 
 
 \section{Navigation Drawer Menü}
-Der auch unter "Hamburger Menü" bekannte \textit{Navigation Drawer} war einer der ersten Ideen für die App. Viele Funktionen später als Tab Bar bzw. als Icons in der oberen rechten Ecke umgesetzt wurden, sind diese Buttons an die genannten Stellen hin verschoben worden. Im Sinne der Anwenderfreundlichkeit wurde sich am Ende gegen den Navigation Drawer entschieden.
+Der auch unter "Hamburger Menü" bekannte \textit{Navigation Drawer} war einer der ersten Ideen für die App. Viele Funktionen wurden später als Tab Bar bzw. als Icons in der oberen rechten Ecke umgesetzt wurden. So sind diese Buttons an die genannten Stellen hin verschoben worden. Im Sinne der Anwenderfreundlichkeit wurde sich am Ende gegen den Navigation Drawer entschieden.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{main_burger} }
@@ -226,16 +227,16 @@ Der Karten Screen zeigt eine Google Map. Darin repräsentieren Pins die Standort
 
 
 \chapter{Screendesign}
-Dieses Kapitel zeigt die Umsetzung der Screens in der App. Von der Entwurfsphase wurde vereinzelt abgewichen, um dem Nutzer eine bessere Benutzererfahrung zu gewährleisten.
+Dieses Kapitel zeigt die Umsetzung der Screens in der App. Von der Entwurfsphase wurde vereinzelt abgewichen, um dem Nutzer eine bessere Benutzererfahrung zu gewährleisten. Während der Implementierungsphase haben sich einzelne Screens deutlich verändert, um dem Nutzer eine bessere Bedienung zu ermöglichen.
 
 \newpage
 
 \section{Main Screeen}
-Der Main Screen zeigt verschiedene Elemente. Darunter ist eine Tab Bar, ein Spinner, Floating Action Button und eine Liste mit Einträgen.
+Der \textit{Main Screen} zeigt verschiedene Elemente. Darunter ist eine \textit{Tab Bar}, ein \textit{Spinner}, \textit{Floating Action Button} und eine Liste mit Einträgen. Mithilfe des Spinner Menüs kann die Liste nach Datumszeiträumen gefiltert werden. Hier können auch auch die negativen Auswirkungen gezielt dargestellt werden.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[width=0.6\textwidth]{mainscreen} }
-	\caption{Haupt Screen mit Einträgen}
+	\caption{Main Screen mit Einträgen}
 	\label{mainscreen}
 \end{figure}
 \newpage
@@ -257,7 +258,7 @@ Beim Hinzufügen eines Eintrags stehen die \textit{EditText} Elemente \textit{Fo
 
 
 \section{Edit Screen}
-Hier lassen sich die bereits zuvor vorhandenen Informationen bearbeiten. Die Beschreibung der Auswirkungen ermöglicht das optionale Hinterlassen einer Notiz wie es einem nach dem Essen ergangen ist.
+Hier lassen sich die bereits zuvor vorhandenen Informationen bearbeiten. Die Beschreibung der Auswirkungen ermöglicht das optionale Hinterlassen einer Notiz, wie es einem nach dem Essen ergangen ist.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[width=0.6\textwidth]{editScreen} }
@@ -269,7 +270,8 @@ Hier lassen sich die bereits zuvor vorhandenen Informationen bearbeiten. Die Bes
 \newpage
 
 \section{Map Screen}
-Der in der Entwurfsphase beschriebene Ansatz konnte fast identisch übernommen werden. Das \textit{Info Window} stellt eine Beschriftung bereit. Ein Klick auf diese Beschriftung führt zum Bearbeiten Screen.
+Der in der Entwurfsphase beschriebene Ansatz konnte fast identisch übernommen werden. Das \textit{Info Window} stellt eine Beschriftung bereit. Ein Klick auf diese Beschriftung führt zum \textit{Edit Screen}.\\
+Ein long press Event auf einen Listeneintrag lässt einen \textit{Alert Dialog} erscheinen. Dieser ermöglicht das Löschen eines Eintrags.
 
 \begin{figure}[H]
 	\centering
@@ -282,6 +284,11 @@ Der in der Entwurfsphase beschriebene Ansatz konnte fast identisch übernommen w
 
 \chapter{Umsetzung}
 Dieser Abschnitt beschreibt die technische Umsetzung der App. Dabei wird auf die einzelnen Schwerpunkte näher eingegangen.
+
+\section{RecyclerView}
+Um eine RecyclerView zu finden braucht man ein \textit{RecyclerAdapter}. Dieser Adapter dient als \textit{ViewHolder}. In der \textit{bind()} Methode werden dann die Werte für die \textit{ViewElemente} pro Reihe gesetzt. 
+Das hat den Vorteil, dass Zellen beim scrollen durch die Liste wiederverwendet werden können und Ressourcen gespart werden.
+
 \section{Datenbank}
 	Für die Speicherung der Daten wurde sich für eine SQLite Datenbank entschieden. Das hat mehrere Vorteile. Zum einen lässt sich der Inhalt dieser Datenbank sehr einfach exportieren, um auf einem anderen Gerät wieder eingespielt werden zu können, zum anderen bietet eine Datenbankstruktur viele Möglichkeiten zur Datenanalyse mit schnellem Zugriff ohne wie bisher mit Files arbeiten zu müssen.
 
@@ -290,8 +297,8 @@ Room wurde als Datenbank Abstraktionsschicht verwendet und bietet einfachen Date
 \lstinputlisting[language=Kotlin]{content/Room_example.kt}
 \newpage
 
-Durch verschiede Annotations und einer Datenzugriffsklasse, werden "stored procedure" erstellt.
-Diese haben den Vorteil das sie zu Compilezeit ausgewertet werden. Dadurch sind Fehler leichter aufspürbar und die Zugriffe werden optimiert.
+Durch verschiede Annotations und einer Datenzugriffsklasse, werden \textit{stored procedures} erstellt.
+Diese haben den Vorteil, das	s sie zu Compilezeit ausgewertet werden. Dadurch sind Fehler leichter aufspürbar und die Zugriffe werden optimiert.
 
 
 \lstinputlisting[language=Kotlin]{content/Room_queries.kt}
@@ -319,7 +326,7 @@ Dieser Ordner ist auf jedem Android Gerät einsehbar und kann heruntergeladen we
 \newpage
 
 \section{Page Adapter}
-Damit die App eine funktionierende Tabbar besitzt, muss ein PageAdapter erstellt werden. Dieser Adapter legt fest wie viel Tabs vorhanden sind, außerdem wird das Wechseln der Tabs gehandhabt. Bei einen Klick auf einem der Tabs wird die \textit{getItem} Methode aufgerufen. Diese erstellt das passende Fragment und gibt es der View zurück.\\
+Damit die App eine funktionierende \textit{Tabbar} besitzt, muss ein \textit{PageAdapter} erstellt werden. Dieser Adapter legt fest wie viel Tabs vorhanden sind, außerdem wird das Wechseln der Tabs gehandhabt. Bei einen Klick auf einem der Tabs wird die \textit{getItem()} Methode aufgerufen. Diese erstellt das passende Fragment und gibt es der View zurück.\\
 
 \lstinputlisting[language=Kotlin]{content/page_adapter.kt}
 
@@ -327,8 +334,8 @@ Damit die App eine funktionierende Tabbar besitzt, muss ein PageAdapter erstellt
 \section{Google Maps}
 Für die Karte ist die Google Maps API eingesetzt worden. Darin wird für jeden Eintrag ein Pin in der Karte dargestellt.
 Der API Key wurde dankenswerterweise von Normen bereitgestellt.
-Die Google Map wird asynchron geladen. Nachdem sie vollständig geladen ist, werden die Koordinaten der einzelnen Speisen aus der Datenbank geladen. Die Markierung des Standortes geschieht mithilfe der Marker Klasse. Dieser Klasse werden außer den oben genannten Koordinaten noch der Title und die Beschreibung einer Speise übergeben. Beim Klick auf einen Marker (Pin) öffnet sich ein 
-InfoWindow, welches die Informationen anzeigt. Auf diesen InfoWindow ist ein onClickListener registriert, welcher die ausgewählte Speise in der Detail Ansicht öffnet.
+Die Google Map wird asynchron geladen. Nachdem sie vollständig geladen ist, werden die Koordinaten der einzelnen Speisen aus der Datenbank geladen. Die Markierung des Standortes geschieht mithilfe der \textit{Marker} Klasse. Dieser Klasse werden außer den oben genannten Koordinaten noch der Title und die Beschreibung einer Speise übergeben. Beim Klick auf einen Marker (Pin) öffnet sich ein 
+\textit{Info Window}, welches die Informationen anzeigt. Auf diesen \textit{Info Window} ist ein \textit{onClickListener} registriert, welcher die ausgewählte Speise in der Detail Ansicht öffnet.
 
 
 \newpage
@@ -345,7 +352,7 @@ MVP ist ein Entwurfsmuster in der Softwareentwicklung.  Dieses unterteilt die Ap
 \end{figure}
 	
 
-Das Model hält die Daten die in der App verwendet werden. Sie strukturiert die Daten logisch. Der Presenter holt sich die Daten aus den Model und verarbeitet sie. Sie stellt die verarbeiten Daten bereit die die View anzeigt.
+Das Model hält die Daten die in der App verwendet werden. Sie strukturiert die Daten logisch. Der Presenter holt sich die Daten aus den Model und verarbeitet diese. Sie stellt die verarbeiten Daten bereit die in der View anzeigt werden.
 
 \newpage
 
@@ -353,10 +360,9 @@ Das Model hält die Daten die in der App verwendet werden. Sie strukturiert die 
 In jedem Projekt treten bei ansteigender Komplexität Probleme auf. Diese sind in diesem Abschnitt vermerkt.
 
 \begin{itemize}
-\item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste. Mangelnde Dokumentation. Probleme beim Integrieren von bereits vorhandenen Projekten.
-\item Constraint Layouts bringen, wenn sie in einer NestedScrollView eingebunden sind gewisse Probleme. So liegt der zu bearbeitende Teil des Screens häufig außerhalb der Reichweite in der man diese bearbeiten kann.
+\item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste. Mangelnde Dokumentation. Probleme beim Integrieren in bereits vorhandenen Projekten.
+\item Constraint Layouts bringen, wenn sie in einer \textit{NestedScrollView} eingebunden sind gewisse Probleme mit sich. So liegt der zu bearbeitende Teil des Screens häufig außerhalb der Reichweite in der man diese bearbeiten kann. Dieser Teil ist nur auf Umwegen erreichbar und schwer zu bearbeiten.
 \item Laut der Google Dokumentation sind Bitmaps das vorgeschlagene Dateiformat für den Umgang mit Bildern. Das hat das Problem, dass bei Verarbeitung mehrere Bilder große Mengen an Daten im Arbeitsspeicher liegen. Der Arbeitsspeicher des Gerätes wird dabei zum Flaschenhals. Bei einer Komprimierung wird dabei zwischen RAM- und CPU-Auslastung abgewogen.
-
 \end{itemize}
 
 \newpage

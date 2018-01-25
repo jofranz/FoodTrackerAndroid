@@ -1,7 +1,6 @@
 mMapView.getMapAsync { mMap ->
 	googleMap = mMap
 
-	// For showing a move to my location button
 	if ((activity as SecondMainActivity).checkLocationPermission()) {
 		googleMap!!.isMyLocationEnabled = true
 	}
