@@ -146,7 +146,6 @@ Kotlin, LaTeX, InAPp-SQLite,Dagger, Room, Recycler View, Model View Presenter, S
 
 \chapter{Kotlin als Programmiersprache}
 Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch bei Kotlin der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler mobiler Anwendungen zusätzlich erleichtert. Die Entscheidung dieses Sprache zu wählen war wieder davon getrieben etwas neues auszuprobieren.\\
-
 Kotlin Code Beispiel:
 \lstinputlisting[language=Kotlin]{content/Kotlin_example.kt}
 
@@ -165,7 +164,7 @@ Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlau
 	\label{main}
 \end{figure}
 
-
+\newpage
 \section{Hinzufügen eines Eintrags}
 Der \textit{Add Screen} hat sich während der Entwicklung nur wenig verändert. Um es dem Nutzer einfach zu machen werden hier die aktuellen Werte einfach übernommen.
 Wichtige Felder lassen sich in einem \textit{Edit Screen} bearbeiten. Dieser wurde um einzelne Elemente erweitert, die beim Hinzufügen noch keine Rolle spielen. Beispiele dafür sind die \textit{SeekBar} und die \textit{Effekt Description}.
@@ -177,7 +176,7 @@ Wichtige Felder lassen sich in einem \textit{Edit Screen} bearbeiten. Dieser wur
 \end{figure}
 
 
-
+\newpage
 \section{Popover im Main Screen}
 Da Popover keinen guten Stil in der Benutzerführung darstellen,  wurden sie durch bessere UI Features ersetzt.
 \begin{figure}[H]
@@ -220,7 +219,6 @@ Der Karten Screen zeigt eine Google Map. Darin repräsentieren Pins die Standort
 
 
 
-
 \newpage
 
 \chapter{Umsetzung}
@@ -228,7 +226,18 @@ Der Karten Screen zeigt eine Google Map. Darin repräsentieren Pins die Standort
 Für die Speicherung der Daten wurde sich für eine SQLite Datenbank entschieden. Das hat mehrere Vorteile. Zum einen lässt sich der Inhalt dieser Datenbank sehr einfach exportieren, um auf einem anderen Gerät wieder eingespielt werden zu können, zum anderen bietet eine Datenbankstruktur viele Möglichkeiten zur Datenanalyse mit schnellem Zugriff ohne wie bisher mit Files arbeiten zu müssen.
 
 \subsection{Room}
-Room wurde als Datenbank Abstraktionsschicht verwendet und bietet einfachen Datenbankzugriff ohne komplexe SQL Befehle.
+
+Room wurde als Datenbank Abstraktionsschicht verwendet und bietet einfachen Datenbankzugriff. Die Room Bibliothek arbeitet mit Annotations. Mithilfe der Annotation und einer Hilfsklasse wird die Datenbank modeliert. 
+\lstinputlisting[language=Kotlin]{content/Room_example.kt}
+
+\newpage
+Durch verschiede Annotations und einer Datenzugriffsklasse, werden "stored procedure" erstellt.
+Diese haben den Vorteil das sie zu Compilezeit ausgewertet werden. Dadurch sind Fehler leichter aufspührbar und die Zugriffe werden optimiert.
+
+
+\lstinputlisting[language=Kotlin]{content/Room_queries.kt}
+
+Quelle:
 \url{https://developer.android.com/topic/libraries/architecture/room.html}
 
 
@@ -245,7 +254,17 @@ Der API Key wurde dankenswerterweise von Normen bereitgestellt.
 
 
 
+\section{MVP}
+MVP ist ein Entwurfsmuster in der Softwareentwicklung.  Dieses unterteilt die Applikation in drei Bestandteile: Model, View, Presenter.\\
 
+\begin{figure}[H]
+	\centering
+  \frame{ \includegraphics[scale=1.0]{MVP} }
+	\caption{Model view presenter}
+	\label{MVP}
+\end{figure}
+
+Das Model hält die Daten die in der App verwendet werden. Sie strukturiert die Daten logisch. Der Presenter holt sich die Daten aus den Model und verarbeitet sie. Sie stellt die verarbeiten Daten bereit die die View anzeigt.
 
 \newpage
 
@@ -268,7 +287,9 @@ Zu Beginn des Projektes ist es schwer die Architektur im größeren Stil planen.
 \newpage
 
 \chapter{Weitere Arbeiten}
-In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet. Da das Projekt als Open Source Projekt auf GitHub zur Verfügung steht, sind forks und pull pull requests willkommen. Da das Projekt somit der Öffentlichkeit übergeben wurde, besteht durchaus ein Interesse unsererseits die App weiter zu entwickeln.
+In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet. 
+Eine Erweiterung die sich um die Inhaltsstoffe der Mahlzeiten dreht und diese speziell auswertet, würde dem Nutzer zusätzliche Vorteile bieten. Diese Daten sind anonym genug um mittels Cloud Schnittstelle mit Werten anderer Personen verglichen werden kann
+Da das Projekt als Open Source Projekt auf GitHub zur Verfügung steht, sind forks und pull pull requests willkommen. Da das Projekt somit der Öffentlichkeit übergeben wurde, besteht durchaus ein Interesse unsererseits die App weiter zu entwickeln.
 
 
 
