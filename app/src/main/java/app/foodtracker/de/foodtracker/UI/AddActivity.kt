@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.location.*
 import android.net.Uri
 import android.os.Bundle
@@ -25,6 +26,7 @@ import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.add_constraint.*
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -92,11 +94,11 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
 
     fun createImageFile() : File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val fileName = "JPEG_" + timeStamp + "_";
+        val fileName = "PNG_" + timeStamp + "_";
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(
                 fileName,
-                ".jpg",
+                ".png",
                 storageDir
         )
         return image
@@ -125,6 +127,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
         }
     }
 
+
     override fun onLocationChanged(location: Location?) {
         if (checkLocationPermission()) {
             if(location?.latitude != null)
@@ -148,11 +151,11 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, LocationListener 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             //val extras = data.extras
+            MediaStore.Images.Media.getBitmap(contentResolver,absulutePath).compress(Bitmap.CompressFormat.JPEG, 90, System.out)
             val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver,absulutePath)
             mealImageView?.let {  mealImageView.setImageBitmap(imageBitmap)}
         }
     }
-
     override fun onStop() {
         super.onStop()
         locationManager.removeUpdates(this)
