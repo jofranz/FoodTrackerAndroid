@@ -1,4 +1,4 @@
-	\documentclass[
+\documentclass[
     DIV12,
     cleardouble=plain,
     headings=normal,
@@ -135,14 +135,13 @@ Ziel ist es eine Open Source App zu entwickeln, die einen Rückschluss von sich 
 Zielgruppe sind Menschen, die wegen Erkrankungen aus ihren zu sich zugenommenen Speisen und Getränken Rückschlüsse auf ihr Wohlbefinden treffen wollen, um zukünftig solche Speisen zu meiden.
 
 
-\newpage
-
 \chapter{Motivation}
 Durch eigenen Bedarf motiviert entstand die Idee zu dieser App. Um aus wiederkehrenden Mahlzeiten eine Unverträglichkeit abzuleiten, stellt die App entsprechende Funktionen bereit.
 Bei dieser Arbeit war außerdem das Ziel möglichst viele neue Technologien zu verwenden. So wurde bei allen Möglichkeiten der schwierigere Weg gewählt, der jedoch zu neuen Erkenntnissen führte.\\
 Beispiele dafür sind:\\
-Kotlin, LaTeX, InAPp-SQLite,Dagger, Room, Recycler View, Model View Presenter, Spinner Menu in der Toolbar
+Kotlin, LaTeX, In-App-SQLite,Dagger, Room, Recycler View, Model View Presenter, Spinner Menu in der Toolbar
 
+\newpage
 
 \chapter{Kotlin als Programmiersprache}
 Für die App wurde die Programmiersprache Kotlin verwendet, welche auf der Google IO im Mai 2017 als offizielle Sprache für Android eingeführt wurde. Kotlin hat einen besser lesbaren Syntax als Java. Wie bei Java wird auch bei Kotlin der Bytecode für die Java Virtual Machine übersetzt. Insgesamt ist Kotlin der Programmiersprache Swift 3 bzw 4 syntaktisch sehr nahe, was den Umgang als Entwickler mobiler Anwendungen zusätzlich erleichtert. Die Entscheidung dieses Sprache zu wählen war wieder davon getrieben etwas neues auszuprobieren.\\
@@ -158,7 +157,7 @@ In der Entwurfsphase wurde keine Zeit verschwendet und somit wurde der Fokus auf
 
 
 \section{Main Screen}
-Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlaufen. So ist die TabBar von unten nach oben gelaufen. Die Datumsauswahl wurde durch eine sinnvollere Gruppierung ersetzt.
+Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlaufen. So ist die TabBar von unten nach oben platziert worden. Die Datumsauswahl wurde durch eine sinnvollere Gruppierung ersetzt.
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[scale=0.7]{main} }
@@ -168,7 +167,7 @@ Der Main Screen hat während der Entwicklungsphase viele Veränderungen durchlau
 
 \newpage
 \section{Hinzufügen eines Eintrags}
-Der \textit{Add Screen} hat sich während der Entwicklung nur wenig verändert. Um es dem Nutzer einfach zu machen werden hier die aktuellen Werte einfach übernommen.
+Der \textit{Add Screen} hat sich während der Entwicklung nur wenig verändert und konnte daher so umgesetzt werden. Um es dem Nutzer einfach zu machen werden hier die aktuellen Werte übernommen.
 Wichtige Felder lassen sich in einem \textit{Edit Screen} bearbeiten. Dieser wurde um einzelne Elemente erweitert, die beim Hinzufügen noch keine Rolle spielen. Beispiele dafür sind die \textit{SeekBar} und die \textit{Effekt Description}.
 \begin{figure}[H]
 	\centering
@@ -208,6 +207,7 @@ Der auch unter "Hamburger Menü" bekannte \textit{Navigation Drawer} war einer d
 	\label{main_burger}
 \end{figure}
 
+\newpage
 
 \section{Karten Screen}
 Der Karten Screen zeigt eine Google Map. Darin repräsentieren Pins die Standorte an denen Essens Einträge hinzugefügt wurden.
@@ -228,13 +228,53 @@ Der Karten Screen zeigt eine Google Map. Darin repräsentieren Pins die Standort
 \chapter{Screendesign}
 Dieses Kapitel zeigt die Umsetzung der Screens in der App. Von der Entwurfsphase wurde vereinzelt abgewichen, um dem Nutzer eine bessere Benutzererfahrung zu gewährleisten.
 
-\section{Karten Screen (Map)}
+\newpage
+
+\section{Main Screeen}
+Der Main Screen zeigt verschiedene Elemente. Darunter ist eine Tab Bar, ein Spinner, Floating Action Button und eine Liste mit Einträgen.
+\begin{figure}[H]
+	\centering
+  \frame{ \includegraphics[width=0.6\textwidth]{mainscreen} }
+	\caption{Haupt Screen mit Einträgen}
+	\label{mainscreen}
+\end{figure}
+\newpage
+
+
+\section{Add Screen}
+Beim Hinzufügen eines Eintrags stehen die \textit{EditText} Elemente \textit{Food Name} und \textit{Food Description} bereit. Die Adresse wird anhand der GPS Location automatisch generiert. Die Uhrzeit stellt die aktuelle Uhrzeit dar. Der \textit{Floating Action Buttion} ermöglicht das Aufrufen der Kamera. Der \textit{ADD ENTRY} Button fügt den Eintrag zur Liste hinzu.
+\begin{figure}[H]
+	\centering
+  \frame{ \includegraphics[width=0.6\textwidth]{addScreen} }
+	\caption{Hinzufügen eines Eintrags}
+	\label{addScreen}
+\end{figure}
+
+
+
+\newpage
+
+
+
+\section{Edit Screen}
+Hier lassen sich die bereits zuvor vorhandenen Informationen bearbeiten. Die Beschreibung der Auswirkungen ermöglicht das optionale Hinterlassen einer Notiz wie es einem nach dem Essen ergangen ist.
+\begin{figure}[H]
+	\centering
+  \frame{ \includegraphics[width=0.6\textwidth]{editScreen} }
+	\caption{Bearbeiten eines Eintrags}
+	\label{editScreen}
+\end{figure}
+
+
+\newpage
+
+\section{Map Screen}
 Der in der Entwurfsphase beschriebene Ansatz konnte fast identisch übernommen werden. Das \textit{Info Window} stellt eine Beschriftung bereit. Ein Klick auf diese Beschriftung führt zum Bearbeiten Screen.
 
 \begin{figure}[H]
 	\centering
   \frame{ \includegraphics[width=0.6\textwidth]{map_pin_detail} }
-	\caption{mappindetail}
+	\caption{Map mit Pin und Beschriftung}
 	\label{Map mit Pin und Beschriftung}
 \end{figure}
 
@@ -247,9 +287,8 @@ Dieser Abschnitt beschreibt die technische Umsetzung der App. Dabei wird auf die
 
 \subsection{Room}
 Room wurde als Datenbank Abstraktionsschicht verwendet und bietet einfachen Datenbankzugriff. Die Room Bibliothek arbeitet mit Annotations. Mithilfe der Annotation und einer Hilfsklasse wird die Datenbank modeliert. 
-
 \lstinputlisting[language=Kotlin]{content/Room_example.kt}
-
+\newpage
 
 Durch verschiede Annotations und einer Datenzugriffsklasse, werden "stored procedure" erstellt.
 Diese haben den Vorteil das sie zu Compilezeit ausgewertet werden. Dadurch sind Fehler leichter aufspürbar und die Zugriffe werden optimiert.
@@ -272,17 +311,41 @@ Das Ausgabeformat CSV (Comma Separated Values) beschreibt den Aufbau einer Textd
 \end{figure}
 
 Die App unterstützt den .CSV Export. Der Export wird als "FoodtrackerData.csv" File im Download Ordner gespeichert.
-Dieser Ordner ist auf jedem Android Gerät einsehbar.
 
+\lstinputlisting[language=SQL]{content/export.csv}
+
+Dieser Ordner ist auf jedem Android Gerät einsehbar und kann heruntergeladen werden.
+
+\newpage
+
+\section{Page Adapter}
+Damit die App eine funktionierende Tabbar besitzt, muss ein PageAdapter erstellt werden. Dieser Adapter legt fest wie viel Tabs vorhanden sind, außerdem wird das Wechseln der Tabs gehandhabt. Bei einen Klick auf einem der Tabs wird die \textit{getItem} Methode aufgerufen. Diese erstellt das passende Fragment und gibt es der View zurück.\\
+
+\lstinputlisting[language=Kotlin]{content/page_adapter.kt}
 
 
 \section{Google Maps}
 Für die Karte ist die Google Maps API eingesetzt worden. Darin wird für jeden Eintrag ein Pin in der Karte dargestellt.
-Der API Key wurde dankensweise von Normen bereitgestellt.
+Der API Key wurde dankenswerterweise von Normen bereitgestellt.
+Die Google Map wird asynchron geladen. Nachdem sie vollständig geladen ist, werden die Koordinaten der einzelnen Speisen aus der Datenbank geladen. Die Markierung des Standortes geschieht mithilfe der Marker Klasse. Dieser Klasse werden außer den oben genannten Koordinaten noch der Title und die Beschreibung einer Speise übergeben. Beim Klick auf einen Marker (Pin) öffnet sich ein 
+InfoWindow, welches die Informationen anzeigt. Auf diesen InfoWindow ist ein onClickListener registriert, welcher die ausgewählte Speise in der Detail Ansicht öffnet.
 
 
+\newpage
+
+\section{MVP}
+MVP ist ein Entwurfsmuster in der Softwareentwicklung.  Dieses unterteilt die Applikation in drei Bestandteile: Model, View, Presenter.\\
 
 
+\begin{figure}[H]
+		\centering
+	\frame{ \includegraphics[scale=1.0]{MVP} }
+		\caption{Model view presenter}
+	\label{MVP}
+\end{figure}
+	
+
+Das Model hält die Daten die in der App verwendet werden. Sie strukturiert die Daten logisch. Der Presenter holt sich die Daten aus den Model und verarbeitet sie. Sie stellt die verarbeiten Daten bereit die die View anzeigt.
 
 \newpage
 
@@ -291,19 +354,24 @@ In jedem Projekt treten bei ansteigender Komplexität Probleme auf. Diese sind i
 
 \begin{itemize}
 \item Aufwändige Integration von Dagger 2 die letztendlich verworfen werden musste. Mangelnde Dokumentation. Probleme beim Integrieren von bereits vorhandenen Projekten.
+\item Constraint Layouts bringen, wenn sie in einer NestedScrollView eingebunden sind gewisse Probleme. So liegt der zu bearbeitende Teil des Screens häufig außerhalb der Reichweite in der man diese bearbeiten kann.
+\item Laut der Google Dokumentation sind Bitmaps das vorgeschlagene Dateiformat für den Umgang mit Bildern. Das hat das Problem, dass bei Verarbeitung mehrere Bilder große Mengen an Daten im Arbeitsspeicher liegen. Der Arbeitsspeicher des Gerätes wird dabei zum Flaschenhals. Bei einer Komprimierung wird dabei zwischen RAM- und CPU-Auslastung abgewogen.
+
 \end{itemize}
 
 \newpage
 
 \chapter{Lessons learned}
-Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut wurde, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.
-
+Dem Parkinsonschen Gesetz folgend wurde die Features während der vorhandenen Zeit umgesetzt. Da während der Appentwicklung die Stundenplan App der Hochschule betreut wurde, entstand gelegentlich ein Interessen- und Ressourcenkonflikt. Letztendlich wurden die Änderungen an der Schnittstelle leicht gewichtet behandelt, da diese einen Mehrwert für viele Hundert Studenten auf Android und iOS Seite mit sich brachten.\\
+Zu Beginn des Projektes ist es schwer die Architektur im größeren Stil planen. Da Features nach und nach erweitert wurden, ist es nötig geworden die Architektur anzupassen, was zu Mehrarbeit geführt hat.
 
 \newpage
 
 \chapter{Weitere Arbeiten}
-In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet. Da das Projekt als Open Source Projekt auf GitHub zur Verfügung steht, sind forks und pull pull requests willkommen. Da das Projekt somit der Öffentlichkeit übergeben wurde, besteht durchaus ein Interesse unsererseits die App weiter zu entwickeln.
+In diesem Projektabschnitt konnten alle gesteckten Ziele erreicht werden. Da solch ein junges Projekt noch viele Möglichkeiten beinhaltet Funktionen zu verbessern und neue Funktionen einzuführen werden hier mögliche Punkte zur Anregung aufgelistet. 
+Eine Erweiterung die sich um die Inhaltsstoffe der Mahlzeiten dreht und diese speziell auswertet, würde dem Nutzer zusätzliche Vorteile bieten. Diese Daten sind anonym genug um mittels Cloud Schnittstelle mit Werten anderer Personen verglichen werden kann.
 
+Da das Projekt als Open Source Projekt auf GitHub zur Verfügung steht, sind forks und pull pull requests willkommen. Da das Projekt somit der Öffentlichkeit übergeben wurde, besteht durchaus ein Interesse unsererseits die App weiter zu entwickeln.
 
 
 \newpage
