@@ -14,10 +14,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import app.foodtracker.de.foodtracker.Model.AppDatabase
 import app.foodtracker.de.foodtracker.Model.MarkerRepresentation
+import app.foodtracker.de.foodtracker.Presenter.DecoderBitmap
 import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
+import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -74,7 +76,8 @@ class MapFragment : Fragment(), LocationListener, GoogleMap.OnInfoWindowClickLis
 
             for (item in mealList) {
 
-                val imageBitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, Uri.parse(item.imagePath))
+                val decoder = DecoderBitmap()
+                val imageBitmap = decoder.decodeFile(File(item.imagePath))
                 val time: GregorianCalendar = GregorianCalendar()
                 time.timeInMillis = item.time
                 val markerRepresentation = MarkerRepresentation(imageBitmap, time, item.foodname)

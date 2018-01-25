@@ -18,7 +18,15 @@ import app.foodtracker.de.foodtracker.R
 import app.foodtracker.de.foodtracker.SecondMainActivity
 import kotlinx.android.synthetic.main.map_fragment.view.*
 import android.R.string.cancel
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.BitmapFactory
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
+import java.io.FilenameFilter
+import java.lang.System.out
+import java.net.URI
 
 
 /**
@@ -42,7 +50,8 @@ class RecyclerAdapter(private val mealList: List<Meal>) : RecyclerView.Adapter<R
 
         fun bind(meal: Meal) = with(view) {
             this.id = meal.id
-            val imageBitmap = MediaStore.Images.Media.getBitmap(view.context.contentResolver,Uri.parse(meal.imagePath))
+            val imageFile = File(meal.imagePath)
+            val imageBitmap = MediaStore.Images.Media.getBitmap(view.context.contentResolver, Uri.parse(meal.imagePath))
             thumbnail.setImageBitmap(imageBitmap)
             foodName.text = meal.foodname
             var time1 = GregorianCalendar()
