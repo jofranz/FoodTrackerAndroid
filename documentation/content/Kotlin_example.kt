@@ -1,49 +1,27 @@
-package hello
-import kotlin.collections.* // line comment
+mMapView.getMapAsync { mMap ->
+	googleMap = mMap
 
-/**
- * Doc comment here for `SomeClass`
- * @see Iterator#next()
- */
-@Deprecated("Deprecated class")
-private class MyClass<out T : Iterable<T>>(var prop1 : Int) {
-    fun foo(nullable : String?, r : Runnable, f : () -> Int, 
-        fl : FunctionLike, dyn: dynamic) {
-        println("length\nis ${nullable?.length} \e")
-        val ints = java.util.ArrayList<Int?>(2)
-        ints[0] = 102 + f() + fl()
-        val myFun = { -> "" };
-        var ref = ints.size
-        ints.lastIndex + globalCounter
-        ints.forEach lit@ {
-            if (it == null) return@lit
-            println(it + ref)
-        }
-        dyn.dynamicCall()
-        dyn.dynamicProp = 5
-    }
-    
-    val test = """hello
-                  world
-                  kotlin"""
-    override fun hashCode(): Int {
-        return super.hashCode() * 31
-    }
-}
-fun Int?.bar() {
-    if (this != null) {
-        println(message = toString())
-    }
-    else {
-        println(this.toString())
-    }
-}
-var globalCounter : Int = 5
-    get = field
-abstract class Abstract {
-}
-object Obj
-enum class E { A, B }
-interface FunctionLike {
-    operator fun invoke() = 1
+	// For showing a move to my location button
+	if ((activity as SecondMainActivity).checkLocationPermission()) {
+		googleMap!!.isMyLocationEnabled = true
+	}
+	googleMap!!.setOnInfoWindowClickListener(this)
+	var mdb = AppDatabase.getInMemoryDatabase(activity.applicationContext)
+	val mealList = mdb.mealModel().getAllMeal()
+
+	for (item in mealList) {
+		var imageBitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, Uri.parse(item.imagePath))
+		val time: GregorianCalendar = GregorianCalendar()
+		time.timeInMillis = item.time
+		val markerRepresentation = MarkerRepresentation(imageBitmap, time, item.foodname)
+
+		if (googleMap != null) {
+			var markerOpt = MarkerOptions().position(LatLng(item.lat, item.lng)).title(item.foodname)
+					.snippet(item.shortDescription)
+			var marker1 = googleMap!!.addMarker(markerOpt)
+			marker1.tag = markerRepresentation
+			markers.add(marker1)
+			googleMap!!.addMarker(markerOpt)?.tag = markerRepresentation
+		}
+	}
 }
